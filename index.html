@@ -103,7 +103,7 @@
       display: flex; align-items: center; gap: 12px;
       padding: 22px 36px 22px 0;
       font-size: .84rem; font-weight: 500; color: var(--forest);
-      border-right: 1px solid rgba(28,53,48,.15);
+      /*border-right: 1px solid rgba(28,53,48,.15);*/
     }
     .is-item:last-child { border-right: none; }
     .is-item:first-child { padding-left: 0; }
@@ -197,6 +197,11 @@
       .is-item{ padding-left:0; padding-right:24px; font-size:.8rem; }
       .promo-card{ padding:40px 28px; }
     }
+
+    @media(max-width:400px){
+      .hero-title{ font-size:2.3rem; }
+    }
+ 
   </style>
 </head>
 <body data-page="home">
