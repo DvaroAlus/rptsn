@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Об организации — Тосненское Райпо</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .about-wrap { max-width:1160px; margin:0 auto; padding:88px 52px; }
+    @media(max-width:768px){ .about-wrap{ padding:56px 20px; } }
+
+    .about-grid { display:grid; grid-template-columns:1fr 360px; gap:80px; align-items:start; }
+    @media(max-width:1024px){ .about-grid{ grid-template-columns:1fr; gap:52px; } }
+
+    /* Timeline */
+    .timeline { border-top:1px solid var(--rule); margin-top:48px; }
+    .tl-row {
+      display:grid; grid-template-columns:90px 1fr; gap:40px;
+      padding:32px 0; border-bottom:1px solid var(--rule);
+      transition: background .25s;
+    }
+    .tl-row:hover { background:var(--ivory); margin:0 -16px; padding-left:16px; padding-right:16px; }
+    .tl-year {
+      font-family:'DM Serif Display',serif;
+      font-size:1.3rem; color:var(--gold); padding-top:3px; line-height:1.2;
+    }
+    .tl-body h3 { font-family:'DM Serif Display',serif; font-size:1.1rem; font-weight:400; color:var(--ink); margin-bottom:6px; }
+    .tl-body p  { font-size:.87rem; color:var(--muted); line-height:1.75; font-weight:300; }
+
+    /* Принципы */
+    .principles { margin-top:52px; }
+    .prin-item {
+      padding:24px 0; border-bottom:1px solid var(--rule);
+      display:grid; grid-template-columns:28px 1fr; gap:20px; align-items:start;
+    }
+    .prin-num {
+      font-family:'DM Serif Display',serif; font-size:.9rem;
+      color:var(--gold); padding-top:3px;
+    }
+    .prin-item h4 { font-size:.95rem; font-weight:500; color:var(--ink); margin-bottom:4px; }
+    .prin-item p  { font-size:.85rem; color:var(--muted); font-weight:300; line-height:1.7; }
+
+    /* Sidebar */
+    .info-card {
+      background:var(--white); border:1px solid var(--rule);
+      padding:32px; margin-bottom:20px;
+      position:relative; overflow:hidden;
+    }
+    .info-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg, var(--forest-soft), var(--gold));
+    }
+    .info-card h4 {
+      font-family:'DM Serif Display',serif; font-size:1.05rem; font-weight:400;
+      color:var(--ink); margin-bottom:20px; padding-bottom:14px;
+      border-bottom:1px solid var(--rule);
+    }
+    .info-row {
+      display:flex; justify-content:space-between; align-items:baseline;
+      padding:9px 0; border-bottom:1px solid var(--rule); font-size:.85rem;
+    }
+    .info-row:last-child { border-bottom:none; }
+    .info-lbl { color:var(--muted); font-weight:300; }
+    .info-val { font-weight:500; color:var(--ink); text-align:right; max-width:160px; font-size:.83rem; }
+  </style>
+</head>
+<body data-page="about">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Главная</a> / Об организации</div>
+      <div class="overline reveal">История и миссия</div>
+      <h1 class="display reveal" style="color:var(--white)">Об <em>организации</em></h1>
+      <p class="lead reveal" style="color:rgba(255,255,255,.5)">История, правовой статус и принципы деятельности Тосненского районного потребительского общества</p>
+    </div>
+  </div>
+
+  <div class="about-wrap">
+    <div class="about-grid">
+      <div>
+        <div class="reveal"><div class="overline">История</div></div>
+        <div class="display reveal" style="font-size:2rem; margin-bottom:16px">Почти 80 лет<br><em>вместе с районом</em></div>
+        <p class="lead reveal" style="margin-bottom:0">Организация прошла путь от первых послевоенных прилавков до разветвлённой сети магазинов и аптек, не изменив главному — работе для людей.</p>
+
+        <div class="timeline">
+          <div class="tl-row reveal reveal-d1">
+            <div class="tl-year">1946</div>
+            <div class="tl-body">
+              <h3>Основание потребительского общества</h3>
+              <p>Первые торговые точки обеспечивали жителей товарами первой необходимости в период восстановления Тосненского района после войны.</p>
+            </div>
+          </div>
+          <div class="tl-row reveal reveal-d1">
+            <div class="tl-year">1960-е</div>
+            <div class="tl-body">
+              <h3>Расширение торговой сети</h3>
+              <p>Магазины открылись во всех населённых пунктах района. Запущены промтоварные отделы и заготовительные пункты приёма продукции от населения.</p>
+            </div>
+          </div>
+          <div class="tl-row reveal reveal-d1">
+            <div class="tl-year">1990-е</div>
+            <div class="tl-body">
+              <h3>Адаптация к рыночной экономике</h3>
+              <p>Организация успешно реструктурировалась, сохранив имущество, коллектив и функцию социально значимого торгового обслуживания.</p>
+            </div>
+          </div>
+          <div class="tl-row reveal reveal-d1">
+            <div class="tl-year">2000-е</div>
+            <div class="tl-body">
+              <h3>Открытие аптечного направления</h3>
+              <p>Получена лицензия на фармацевтическую деятельность. Вхождение в региональную программу льготного лекарственного обеспечения.</p>
+            </div>
+          </div>
+          <div class="tl-row reveal reveal-d1">
+            <div class="tl-year">Сегодня</div>
+            <div class="tl-body">
+              <h3>Современная многоотраслевая структура</h3>
+              <p>Более 40 объектов в 18 населённых пунктах. Шесть направлений деятельности. Свыше тысячи членов-пайщиков.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="principles reveal">
+          <div class="overline" style="margin-top:52px">Принципы работы</div>
+          <div class="prin-item">
+            <div class="prin-num">I</div>
+            <div><h4>Добровольное и открытое членство</h4><p>Кооператив открыт для всех граждан, готовых пользоваться услугами и взять на себя вытекающие из членства обязательства.</p></div>
+          </div>
+          <div class="prin-item">
+            <div class="prin-num">II</div>
+            <div><h4>Демократический контроль членов</h4><p>Пайщики активно участвуют в выработке политики и принятии ключевых решений. Один пайщик — один голос.</p></div>
+          </div>
+          <div class="prin-item">
+            <div class="prin-num">III</div>
+            <div><h4>Экономическое участие членов</h4><p>Часть дохода распределяется среди пайщиков пропорционально объёму операций по решению общего собрания.</p></div>
+          </div>
+          <div class="prin-item">
+            <div class="prin-num">IV</div>
+            <div><h4>Забота об обществе</h4><p>Работаем в интересах устойчивого развития сообщества — особенно там, где нет других торговых организаций.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="info-card reveal">
+          <h4>Реквизиты организации</h4>
+          <div class="info-row"><span class="info-lbl">Наименование</span><span class="info-val">Тосненское районное потребительское общество</span></div>
+          <div class="info-row"><span class="info-lbl">Правовая форма</span><span class="info-val">Потребительский кооператив</span></div>
+          <div class="info-row"><span class="info-lbl">ИНН</span><span class="info-val">4716000001</span></div>
+          <div class="info-row"><span class="info-lbl">ОГРН</span><span class="info-val">1024701335XXX</span></div>
+          <div class="info-row"><span class="info-lbl">Год основания</span><span class="info-val">1946</span></div>
+          <div class="info-row"><span class="info-lbl">Регион</span><span class="info-val">Ленинградская обл.</span></div>
+        </div>
+        <div class="info-card reveal">
+          <h4>Показатели</h4>
+          <div class="info-row"><span class="info-lbl">Торговых объектов</span><span class="info-val">40+</span></div>
+          <div class="info-row"><span class="info-lbl">Населённых пунктов</span><span class="info-val">18</span></div>
+          <div class="info-row"><span class="info-lbl">Пайщиков</span><span class="info-val">1 000+</span></div>
+          <div class="info-row"><span class="info-lbl">Сотрудников</span><span class="info-val">300+</span></div>
+          <div class="info-row"><span class="info-lbl">Направлений</span><span class="info-val">6</span></div>
+        </div>
+        <div class="info-card reveal" style="background:var(--forest); border-color:var(--forest)">
+          <h4 style="color:var(--gold-light); border-bottom-color:rgba(255,255,255,.08)">Стать пайщиком</h4>
+          <p style="font-size:.86rem; color:rgba(255,255,255,.45); font-weight:300; line-height:1.8; margin-bottom:24px">Вступите в потребительское общество, внесите паевой взнос и получите право участвовать в управлении организацией и распределении дивидендов.</p>
+          <a href="contacts.html" class="btn btn-gold" style="width:100%; justify-content:center">Подать заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="nav.js"></script>
+</body>
+</html>

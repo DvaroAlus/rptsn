@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Тосненское Райпо — Официальный сайт</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── HERO ── */
+    .hero {
+      background: var(--forest);
+      min-height: 640px;
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-text {
+      position: absolute; right: -20px; bottom: -40px;
+      font-family: 'DM Serif Display', serif;
+      font-size: 28vw; line-height: .85;
+      color: rgba(255,255,255,.025); pointer-events: none;
+      user-select: none; white-space: nowrap; z-index: 0;
+      animation: bgDrift 18s ease-in-out infinite alternate;
+    }
+    @keyframes bgDrift { from{ transform:translateX(0) } to{ transform:translateX(-2%) } }
+
+    .hero-left {
+      padding: 108px 52px 88px 52px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; z-index: 1;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: .7rem; font-weight: 500;
+      color: rgba(255,255,255,.4);
+      letter-spacing: .16em; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 24px; height: 1.5px;
+      background: var(--gold);
+    }
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      font-weight: 400; line-height: 1.07;
+      color: var(--white); letter-spacing: -.01em;
+      margin-bottom: 28px;
+    }
+    .hero-title em { display: block; font-style: italic; color: var(--gold-light); }
+    .hero-desc {
+      font-size: .92rem; color: rgba(255,255,255,.45);
+      font-weight: 300; max-width: 420px;
+      line-height: 1.85; margin-bottom: 44px;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* Анимация появления hero-элементов */
+    .hero-eyebrow { animation: slideUp .7s .1s both; }
+    .hero-title   { animation: slideUp .7s .25s both; }
+    .hero-desc    { animation: slideUp .7s .4s both; }
+    .hero-btns    { animation: slideUp .7s .55s both; }
+    @keyframes slideUp {
+      from { opacity:0; transform:translateY(24px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .hero-right {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-left: 1px solid rgba(255,255,255,.06);
+      position: relative; z-index: 1;
+    }
+    .hero-stat {
+      padding: 44px 36px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      border-right: 1px solid rgba(255,255,255,.06);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      min-height: 165px;
+      animation: fadeIn .8s both;
+    }
+    .hero-stat:nth-child(1){ animation-delay:.3s }
+    .hero-stat:nth-child(2){ animation-delay:.4s; border-right:none }
+    .hero-stat:nth-child(3){ animation-delay:.5s; border-bottom:none }
+    .hero-stat:nth-child(4){ animation-delay:.6s; border-right:none; border-bottom:none }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+    .hs-val {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem; line-height: 1;
+      color: var(--gold-light); margin-bottom: 6px;
+      letter-spacing: -.02em;
+    }
+    .hs-lbl { font-size: .68rem; color: rgba(255,255,255,.3); text-transform: uppercase; letter-spacing: .1em; }
+
+    /* ── INTRO STRIP ── */
+    .intro-strip {
+      background: var(--gold);
+      padding: 0 52px;
+      display: flex; align-items: stretch; justify-content: center; overflow: hidden;
+    }
+    .is-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 22px 36px 22px 0;
+      font-size: .84rem; font-weight: 500; color: var(--forest);
+      border-right: 1px solid rgba(28,53,48,.15);
+    }
+    .is-item:last-child { border-right: none; }
+    .is-item:first-child { padding-left: 0; }
+
+    /* ── DIRECTIONS SPLIT ── */
+    .dir-split {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      border: 1px solid var(--rule); margin-top: 60px;
+      overflow: hidden;
+    }
+    .dir-panel:nth-child(3) { border-right: none; }
+    .dir-panel:nth-child(n+4) { border-top: 1px solid var(--rule); }
+    .dir-panel:nth-child(6) { border-right: none; }
+    .dir-panel {
+      padding: 48px 40px;
+      border-right: 1px solid var(--rule);
+      transition: background .3s;
+      position: relative;
+    }
+    .dir-panel:last-child { border-right: none; }
+    .dir-panel::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--forest-soft), var(--gold));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .4s cubic-bezier(.4,0,.2,1);
+    }
+    .dir-panel:hover { background: var(--ivory); }
+    .dir-panel:hover::before { transform: scaleX(1); }
+    .dir-panel:hover .dir-icon { transform: translateY(-3px); }
+
+    .dir-icon { font-size: 2.4rem; margin-bottom: 20px; display: block; transition: transform .3s; }
+    .dir-panel h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem; font-weight: 400;
+      color: var(--ink); margin-bottom: 12px;
+    }
+    .dir-panel p { font-size: .88rem; color: var(--muted); line-height: 1.75; font-weight: 300; margin-bottom: 24px; }
+    .dir-link {
+      font-size: .75rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .08em;
+      color: var(--forest-soft); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: gap .2s, color .2s;
+    }
+    .dir-link:hover { gap: 10px; color: var(--gold); }
+
+    /* ── TWO-COL PROMO ── */
+    .promo-split {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; margin-top: 60px;
+    }
+    .promo-card {
+      padding: 52px 48px; position: relative; overflow: hidden;
+    }
+    .promo-dark  { background: var(--forest); }
+    .promo-light { background: var(--ivory); border: 1px solid var(--rule); }
+    .promo-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.7rem; font-weight: 400; margin-bottom: 14px; line-height: 1.2;
+    }
+    .promo-dark  h3 { color: var(--white); }
+    .promo-light h3 { color: var(--ink); }
+    .promo-card p { font-size: .88rem; line-height: 1.8; font-weight: 300; margin-bottom: 32px; }
+    .promo-dark  p { color: rgba(255,255,255,.45); }
+    .promo-light p { color: var(--muted); }
+    .promo-deco {
+      position: absolute; right: -20px; bottom: -32px;
+      font-family: 'DM Serif Display', serif;
+      font-size: 11rem; line-height: 1; pointer-events: none; user-select: none;
+      transition: transform .4s ease;
+    }
+    .promo-dark  .promo-deco { color: rgba(255,255,255,.04); }
+    .promo-light .promo-deco { color: rgba(28,53,48,.04); }
+    .promo-card:hover .promo-deco { transform: scale(1.05) translateY(-4px); }
+
+    @media(max-width:1024px){
+      .hero{ grid-template-columns:1fr; min-height:auto; }
+      .hero-left{ padding:72px 32px 48px; }
+      .hero-right{ border-left:none; border-top:1px solid rgba(255,255,255,.06); }
+      .intro-strip{ padding:0 32px; flex-wrap:wrap; }
+      .dir-split{ grid-template-columns:1fr; }
+      .dir-panel{ border-right:none; border-bottom:1px solid var(--rule); }
+      .dir-panel:last-child{ border-bottom:none; }
+      .promo-split{ grid-template-columns:1fr; }
+    }
+    @media(max-width:768px){
+      .hero-left{ padding:60px 20px 40px; }
+      .hero-stat { padding:28px 24px; min-height:120px; }
+      .intro-strip{ padding:0 20px; }
+      .is-item{ padding-left:0; padding-right:24px; font-size:.8rem; }
+      .promo-card{ padding:40px 28px; }
+    }
+  </style>
+</head>
+<body data-page="home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-text">Р</div>
+    <div class="hero-left">
+      <span class="hero-eyebrow">Ленинградская область · Тосненский район</span>
+      <h1 class="hero-title">
+        Районное<br>потребительское<br><em>общество</em>
+      </h1>
+      <p class="hero-desc">Продовольственные и промтоварные магазины, аптеки по всему Тосненскому району. Работаем для жителей с 1946 года.</p>
+      <div class="hero-btns">
+        <a href="stores.html" class="btn btn-gold">Найти магазин</a>
+        <a href="about.html"  class="btn btn-outline-light">Об организации</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat"><div class="hs-val">1946</div><div class="hs-lbl">год основания</div></div>
+      <div class="hero-stat"><div class="hs-val">40+</div><div class="hs-lbl">торговых объектов</div></div>
+      <div class="hero-stat"><div class="hs-val">6</div><div class="hs-lbl">направлений</div></div>
+      <div class="hero-stat"><div class="hs-val">78</div><div class="hs-lbl">лет на рынке</div></div>
+    </div>
+  </section>
+
+  <!-- INTRO STRIP -->
+  <div class="intro-strip">
+    <div class="is-item">🛒 Продовольственные магазины</div>
+    <div class="is-item">🏪 Промтоварные магазины</div>
+    <div class="is-item">💊 Аптечные пункты</div>
+    <div class="is-item">🍽️ Общественное питание</div>
+    <div class="is-item">🐾 Ветклиника и зоомаркет</div>
+  </div>
+
+  <!-- НАПРАВЛЕНИЯ -->
+  <div class="section">
+    <div class="reveal"><div class="overline">Направления деятельности</div></div>
+    <div class="reveal" style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:20px">
+      <div class="display">Шесть направлений —<br><em>одна организация</em></div>
+      <a href="stores.html" class="btn btn-ghost">Все объекты →</a>
+    </div>
+    <div class="dir-split">
+      <div class="dir-panel reveal reveal-d1">
+        <span class="dir-icon">🛒</span>
+        <h3>Продовольственная торговля</h3>
+        <p>Свежие продукты, молочная продукция, мясо и товары повседневного спроса. Прямые поставки от местных фермерских хозяйств Ленинградской области.</p>
+        <a href="stores.html" class="dir-link">Найти магазин →</a>
+      </div>
+      <div class="dir-panel reveal reveal-d2">
+        <span class="dir-icon">🏪</span>
+        <h3>Промтоварная торговля</h3>
+        <p>Одежда, обувь, текстиль, хозяйственные и строительные товары, всё для сада и огорода. Доступные цены, удобные точки в каждом посёлке.</p>
+        <a href="stores.html" class="dir-link">Найти магазин →</a>
+      </div>
+      <div class="dir-panel reveal reveal-d3">
+        <span class="dir-icon">💊</span>
+        <h3>Аптечная деятельность</h3>
+        <p>Лекарственные препараты, изделия медицинского назначения, товары для здоровья. Участие в программе льготного лекарственного обеспечения области.</p>
+        <a href="stores.html" class="dir-link">Найти аптеку →</a>
+      </div>
+      <div class="dir-panel reveal reveal-d1">
+        <span class="dir-icon">🍽️</span>
+        <h3>Общественное питание</h3>
+        <p>Столовые и кафе для жителей и работников района. Доступные комплексные обеды, выпечка, кулинария — вкусно, свежо и по разумной цене.</p>
+        <a href="stores.html" class="dir-link">Узнать подробнее →</a>
+      </div>
+      <div class="dir-panel reveal reveal-d2">
+        <span class="dir-icon">🏥</span>
+        <h3>Ветеринарная клиника</h3>
+        <p>Профессиональная ветеринарная помощь домашним животным: приём, диагностика, вакцинация и лечение. Опытные специалисты, современное оборудование.</p>
+        <a href="stores.html" class="dir-link">Записаться →</a>
+      </div>
+      <div class="dir-panel reveal reveal-d3">
+        <span class="dir-icon">🐾</span>
+        <h3>Зоомаркет</h3>
+        <p>Корма, аксессуары, товары по уходу за домашними животными. Широкий ассортимент для кошек, собак, птиц и грызунов по доступным ценам.</p>
+        <a href="stores.html" class="dir-link">В магазин →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA BAR -->
+  <div class="data-bar">
+    <div class="db-cell reveal reveal-d1"><span class="db-val">40+</span><span class="db-label">торговых объектов</span></div>
+    <div class="db-cell reveal reveal-d2"><span class="db-val">78</span><span class="db-label">лет на рынке</span></div>
+    <div class="db-cell reveal reveal-d3"><span class="db-val">1000+</span><span class="db-label">пайщиков</span></div>
+    <div class="db-cell reveal reveal-d4"><span class="db-val">6</span><span class="db-label">направлений</span></div>
+  </div>
+
+  <!-- ПРОЧИЕ ПРЕИМУЩЕСТВА -->
+  <div class="section">
+    <div class="reveal"><div class="overline">Наши преимущества</div></div>
+    <div class="reveal display" style="margin-bottom:0">Почему выбирают<br><em>Тосненское Райпо</em></div>
+    <div class="grid grid-4">
+      <div class="gc reveal reveal-d1">
+        <div class="gc-icon">📍</div>
+        <h3>Шаговая доступность</h3>
+        <p>Магазины расположены в каждом посёлке и деревне района — не нужно ехать далеко за покупками.</p>
+      </div>
+      <div class="gc reveal reveal-d2">
+        <div class="gc-icon">💰</div>
+        <h3>Честные цены</h3>
+        <p>Прямые договоры с поставщиками без лишних посредников — экономия напрямую отражается в ценнике.</p>
+      </div>
+      <div class="gc reveal reveal-d3">
+        <div class="gc-icon">🌾</div>
+        <h3>Местные продукты</h3>
+        <p>Приоритет — фермерам Ленинградской области. Свежее, натуральное, с поддержкой местного агробизнеса.</p>
+      </div>
+      <div class="gc reveal reveal-d4">
+        <div class="gc-icon">🤝</div>
+        <h3>Кооперативное управление</h3>
+        <p>Пайщики участвуют в управлении и получают дивиденды. Открытая отчётность и народный контроль.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROMO SPLIT -->
+  <div class="section" style="padding-top:0">
+    <div class="promo-split">
+      <div class="promo-card promo-dark reveal reveal-left">
+        <div class="overline" style="color:var(--gold-light)">Кооператив</div>
+        <h3>Организация,<br>подотчётная пайщикам</h3>
+        <p>Высший орган управления — общее собрание пайщиков. Ежегодная публичная отчётность. Дивиденды по итогам года.</p>
+        <a href="about.html" class="btn btn-gold">Стать пайщиком</a>
+        <div class="promo-deco">П</div>
+      </div>
+      <div class="promo-card promo-light reveal reveal-right">
+        <div class="overline">Социальная миссия</div>
+        <h3>Там, где нужны<br>больше всего</h3>
+        <p>Мы работаем в малых сёлах и деревнях, куда не доходят крупные ретейлеры. Для нас это не лозунг, а ежедневная практика.</p>
+        <a href="stores.html" class="btn btn-forest">Торговая сеть</a>
+        <div class="promo-deco">С</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="reveal overline" style="justify-content:center">Членство в кооперативе</div>
+    <div class="reveal display display-white" style="font-size:clamp(1.8rem,3vw,2.8rem)">Вступите в потребительское общество</div>
+    <p class="reveal lead" style="margin:0 auto 36px; color:rgba(255,255,255,.5)">Пайщики Тосненского Райпо участвуют в управлении, получают дивиденды и специальные условия обслуживания во всех наших магазинах.</p>
+    <a href="contacts.html" class="btn btn-gold reveal">Подать заявку на членство</a>
+  </div>
+
+  <script src="nav.js"></script>
+</body>
+</html>

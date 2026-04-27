@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Торговая сеть — Тосненское Райпо</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .stores-body { max-width:1160px; margin:0 auto; padding:72px 52px 88px; }
+    @media(max-width:768px){ .stores-body{ padding:48px 20px 60px; } }
+
+    .map-block {
+      background:var(--forest); height:320px;
+      display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px;
+      margin-bottom:52px; position:relative; overflow:hidden;
+    }
+    .map-block::before {
+      content:''; position:absolute; left:0; top:0; bottom:0; width:4px;
+      background:linear-gradient(to bottom, var(--gold), transparent);
+    }
+    .map-block::after {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse 60% 80% at 80% 50%, rgba(184,136,42,.12) 0%, transparent 55%);
+    }
+    .map-block-inner { z-index:1; text-align:center; }
+    .map-block h3 { font-family:'DM Serif Display',serif; color:var(--white); font-size:1.4rem; font-weight:400; margin-bottom:8px; }
+    .map-block p  { color:rgba(255,255,255,.4); font-size:.85rem; font-weight:300; margin-bottom:20px; }
+
+    /* Filters */
+    .filter-bar { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--rule); }
+    .fb {
+      font-family:'Outfit',sans-serif; font-size:.76rem; font-weight:500;
+      letter-spacing:.06em; padding:9px 20px; cursor:pointer;
+      border:1.5px solid var(--rule); background:transparent; color:var(--muted);
+      transition:all .25s;
+    }
+    .fb.active,.fb:hover { background:var(--forest); color:var(--white); border-color:var(--forest); }
+    .stores-count { font-size:.8rem; color:var(--muted); margin-bottom:20px; font-weight:300; }
+
+    /* Cards grid */
+    .sc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:20px; }
+    @media(max-width:480px){ .sc-grid{ grid-template-columns:1fr; } }
+
+    .sc {
+      background:var(--white); border:1px solid var(--rule);
+      padding:24px; transition:all .3s; position:relative;
+    }
+    .sc::after {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg, var(--forest-soft), var(--gold));
+      transform:scaleX(0); transform-origin:left;
+      transition:transform .35s cubic-bezier(.4,0,.2,1);
+    }
+    .sc:hover { box-shadow:0 8px 32px rgba(28,53,48,.1); transform:translateY(-3px); }
+    .sc:hover::after { transform:scaleX(1); }
+
+    .sc-badge {
+      font-size:.65rem; font-weight:600; text-transform:uppercase;
+      letter-spacing:.08em; padding:3px 10px; border:1px solid; display:inline-block; margin-bottom:14px;
+    }
+    .b-food  { border-color:#4A7A4A; color:#2A5A2A; background:#EEF7EE; }
+    .b-prom  { border-color:#7A5A2A; color:#5A3A0A; background:#F7F0E4; }
+    .b-pharm      { border-color:#2A4A7A; color:#0A2A5A; background:#E4EBF7; }
+    .b-food-svc   { border-color:#6A4A2A; color:#4A2A0A; background:#F7F0E4; }
+    .b-vet        { border-color:#6A2A6A; color:#4A0A4A; background:#F4E4F7; }
+    .b-zoo        { border-color:#2A6A4A; color:#0A4A2A; background:#E4F7EC; }
+
+    .sc h3 { font-family:'DM Serif Display',serif; font-size:1.05rem; font-weight:400; margin-bottom:12px; color:var(--ink); }
+    .sc-meta { display:flex; flex-direction:column; gap:7px; }
+    .sc-row  { display:flex; gap:8px; font-size:.84rem; color:var(--muted); font-weight:300; align-items:flex-start; }
+    .sc-row .i { flex-shrink:0; width:16px; }
+    .sc-hours { color:var(--forest-soft); font-weight:500; }
+  </style>
+</head>
+<body data-page="stores">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Главная</a> / Торговая сеть</div>
+      <div class="overline reveal">Реестр торговых объектов</div>
+      <h1 class="display reveal" style="color:var(--white)">Торговая <em>сеть</em></h1>
+      <p class="lead reveal" style="color:rgba(255,255,255,.5)">40+ торговых объектов в 18 населённых пунктах Тосненского района Ленинградской области</p>
+    </div>
+  </div>
+
+  <div class="stores-body">
+    <div class="map-block reveal">
+      <div class="map-block-inner">
+        <h3>Интерактивная карта</h3>
+        <p>Все объекты на карте Тосненского района</p>
+        <a href="https://yandex.ru/maps/?text=Тосненское+Райпо" target="_blank" class="btn btn-gold">Открыть в Яндекс.Картах ↗</a>
+      </div>
+    </div>
+
+    <div class="filter-bar reveal">
+      <button class="fb active" onclick="f('all',this)">Все объекты</button>
+      <button class="fb" onclick="f('food',this)">🛒 Продовольственные</button>
+      <button class="fb" onclick="f('prom',this)">🏪 Промтоварные</button>
+      <button class="fb" onclick="f('pharm',this)">💊 Аптеки</button>
+      <button class="fb" onclick="f('food_service',this)">🍽️ Общепит</button>
+      <button class="fb" onclick="f('vet',this)">🐾 Ветклиника и зоомаркет</button>
+    </div>
+    <div class="stores-count reveal" id="cnt">Показано объектов: <strong>19</strong></div>
+
+    <div class="sc-grid" id="sc-grid">
+      <div class="sc reveal reveal-d1" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Тосно Центральный</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Советская, 7</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 21:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d2" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Лесколово</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Лесколово, ул. Центральная, 5</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d3" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Николаевское</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Николаевское, ул. Ленина, 3</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d1" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Любань</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Любань, ул. Советская, 8</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 21:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d2" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Ульяновка</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Ульяновка, ул. Кирова, 14</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d3" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Красный Бор</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Красный Бор, ул. Лесная, 2</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d1" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Рябово</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Рябово, ул. Молодёжная, 1</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d2" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Шапки</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Шапки, ул. Садовая, 7</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d3" data-type="prom"><span class="sc-badge b-prom">Промтоварный</span><h3>Хозяин</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, пр. Ленина, 22</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, пн – сб</span></div></div></div>
+      <div class="sc reveal reveal-d1" data-type="prom"><span class="sc-badge b-prom">Промтоварный</span><h3>Текстиль и Дом</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Строителей, 7</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">10:00 – 19:00, пн – сб</span></div></div></div>
+      <div class="sc reveal reveal-d2" data-type="prom"><span class="sc-badge b-prom">Промтоварный</span><h3>Любань Универсал</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Любань, ул. Гагарина, 12</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 18:00, пн – сб</span></div></div></div>
+      <div class="sc reveal reveal-d3" data-type="prom"><span class="sc-badge b-prom">Промтоварный</span><h3>Всё для дачи</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Садовая, 15</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d1" data-type="pharm"><span class="sc-badge b-pharm">Аптека</span><h3>Аптека Райпо №1</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Советская, 12</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d2" data-type="pharm"><span class="sc-badge b-pharm">Аптека</span><h3>Аптека Райпо №2</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, пр. Ленина, 18</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d3" data-type="pharm"><span class="sc-badge b-pharm">Аптека</span><h3>Аптека Любань</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Любань, ул. Советская, 5</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:30 – 19:30, пн – пт</span></div></div></div>
+      <div class="sc reveal reveal-d1" data-type="food_service"><span class="sc-badge b-food-svc">Общественное питание</span><h3>Столовая «Тосно»</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, пр. Ленина, 15</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 18:00, пн – пт</span></div></div></div>
+      <div class="sc reveal reveal-d2" data-type="food_service"><span class="sc-badge b-food-svc">Общественное питание</span><h3>Кафе «Любань»</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Любань, ул. Советская, 3</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">10:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d3" data-type="vet"><span class="sc-badge b-vet">Ветеринарная клиника</span><h3>Ветклиника Райпо</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Строителей, 3</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 18:00, пн – сб</span></div></div></div>
+      <div class="sc reveal reveal-d1" data-type="vet"><span class="sc-badge b-zoo">Зоомаркет</span><h3>Зоомаркет Райпо</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Строителей, 3</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, ежедневно</span></div></div></div>
+    </div>
+  </div>
+  <script>
+    function f(type, btn) {
+      document.querySelectorAll('.fb').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      let n = 0;
+      document.querySelectorAll('#sc-grid .sc').forEach(c => {
+        const show = type==='all' || c.dataset.type===type;
+        c.style.display = show ? '' : 'none';
+        if(show) n++;
+      });
+      document.getElementById('cnt').innerHTML = 'Показано объектов: <strong>'+n+'</strong>';
+    }
+  </script>
+  <script src="nav.js"></script>
+</body>
+</html>
