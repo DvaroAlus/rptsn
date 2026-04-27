@@ -409,7 +409,7 @@ footer {
   nav{ padding:0 20px; }
   .nav-links{ display:none; }
   .burger{ display:flex; }
-  .section{ padding:60px 20px; }
+  .section{ padding:60px 20px; max-width: 518px;}
   .page-hero{ padding:52px 20px 44px; }
   .band{ padding:56px 20px; }
   footer{ padding:48px 20px 28px; }
