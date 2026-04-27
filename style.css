@@ -79,14 +79,12 @@ nav.scrolled {
 
 .nav-logo { display:flex; align-items:center; gap:14px; text-decoration:none; }
 .nav-logo-mark {
-  width: 40px; height: 40px;
-  border: 1.5px solid rgba(212,168,74,.5);
+  width: 44px; height: 44px;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.1rem; color: var(--gold-light);
-  transition: border-color .3s, color .3s;
+  flex-shrink: 0; transition: transform .3s;
 }
-.nav-logo:hover .nav-logo-mark { border-color: var(--gold-light); }
+.nav-logo-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.nav-logo:hover .nav-logo-mark { transform: scale(1.06); }
 .nav-logo-name {
   font-family: 'DM Serif Display', serif;
   font-size: 1rem; color: var(--white); line-height: 1.2;
@@ -368,12 +366,11 @@ footer {
   border-bottom: 1px solid rgba(255,255,255,.07);
 }
 .footer-logo-mark {
-  width: 44px; height: 44px;
-  border: 1.5px solid rgba(212,168,74,.4);
+  width: 52px; height: 52px;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.2rem; color: var(--gold-light); margin-bottom: 16px;
+  margin-bottom: 16px;
 }
+.footer-logo-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .footer-name {
   font-family: 'DM Serif Display', serif;
   font-size: 1.1rem; color: var(--white); margin-bottom: 4px;
