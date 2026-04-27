@@ -5,7 +5,7 @@
   const navHTML = `
 <nav id="navbar">
   <a href="index.html" class="nav-logo">
-    <div class="nav-logo-mark"><img src="img/logo.png" alt="Тосненское Райпо"></div>
+    <div class="nav-logo-mark"><img src="logo.png" alt="Тосненское Райпо"></div>
     <div>
       <div class="nav-logo-name">Тосненское Райпо</div>
       <div class="nav-logo-tagline">Потребительское общество · 1946</div>
@@ -41,7 +41,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="footer-logo-mark"><img src="img/logo.png" alt="Тосненское Райпо"></div>
+      <div class="footer-logo-mark"><img src="logo.png" alt="Тосненское Райпо"></div>
       <div class="footer-name">Тосненское Райпо</div>
       <div class="footer-sub">Потребительское общество · с 1946 года</div>
       <p class="footer-desc">Ленинградская область, Тосненский район. Продовольственная и промтоварная торговля, аптечная деятельность.</p>
