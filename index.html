@@ -38,15 +38,13 @@
       margin-bottom: 28px;
     }
     .hero-eyebrow::before {
-      content: ''; width: 24px; height: 1.5px;
-      background: var(--gold);
+      content: ''; width: 24px; height: 1.5px; background: var(--gold);
     }
     .hero-title {
       font-family: 'DM Serif Display', serif;
       font-size: clamp(2.8rem, 5vw, 5rem);
       font-weight: 400; line-height: 1.07;
-      color: var(--white); letter-spacing: -.01em;
-      margin-bottom: 28px;
+      color: var(--white); letter-spacing: -.01em; margin-bottom: 28px;
     }
     .hero-title em { display: block; font-style: italic; color: var(--gold-light); }
     .hero-desc {
@@ -56,7 +54,6 @@
     }
     .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
 
-    /* Анимация появления hero-элементов */
     .hero-eyebrow { animation: slideUp .7s .1s both; }
     .hero-title   { animation: slideUp .7s .25s both; }
     .hero-desc    { animation: slideUp .7s .4s both; }
@@ -68,7 +65,7 @@
 
     .hero-right {
       display: grid; grid-template-columns: 1fr 1fr;
-      border-left: 1px solid rgba(255,255,255,.06);
+     border-left: 1px solid rgba(255,255,255,.06);
       position: relative; z-index: 1;
     }
     .hero-stat {
@@ -76,8 +73,7 @@
       border-bottom: 1px solid rgba(255,255,255,.06);
       border-right: 1px solid rgba(255,255,255,.06);
       display: flex; flex-direction: column; justify-content: flex-end;
-      min-height: 165px;
-      animation: fadeIn .8s both;
+      min-height: 165px; animation: fadeIn .8s both;
     }
     .hero-stat:nth-child(1){ animation-delay:.3s }
     .hero-stat:nth-child(2){ animation-delay:.4s; border-right:none }
@@ -88,8 +84,7 @@
     .hs-val {
       font-family: 'DM Serif Display', serif;
       font-size: 3rem; line-height: 1;
-      color: var(--gold-light); margin-bottom: 6px;
-      letter-spacing: -.02em;
+      color: var(--gold-light); margin-bottom: 6px; letter-spacing: -.02em;
     }
     .hs-lbl { font-size: .68rem; color: rgba(255,255,255,.3); text-transform: uppercase; letter-spacing: .1em; }
 
@@ -104,25 +99,22 @@
       display: flex; align-items: center; gap: 10px;
       padding: 18px 24px;
       font-size: .82rem; font-weight: 500; color: var(--forest);
-      border-right: 1px solid rgba(28,53,48,.15);
+      /*border-right: 1px solid rgba(28,53,48,.15);*/
       white-space: nowrap;
     }
     .is-item:last-child { border-right: none; }
 
-    /* ── DIRECTIONS SPLIT ── */
+    /* ── DIRECTIONS ── */
     .dir-split {
       display: grid; grid-template-columns: 1fr 1fr 1fr;
-      border: 1px solid var(--rule); margin-top: 60px;
-      overflow: hidden;
+      border: 1px solid var(--rule); margin-top: 60px; overflow: hidden;
     }
     .dir-panel:nth-child(3) { border-right: none; }
     .dir-panel:nth-child(n+4) { border-top: 1px solid var(--rule); }
     .dir-panel:nth-child(6) { border-right: none; }
     .dir-panel {
-      padding: 48px 40px;
-      border-right: 1px solid var(--rule);
-      transition: background .3s;
-      position: relative;
+      padding: 48px 40px; border-right: 1px solid var(--rule);
+      transition: background .3s; position: relative;
     }
     .dir-panel:last-child { border-right: none; }
     .dir-panel::before {
@@ -135,12 +127,10 @@
     .dir-panel:hover { background: var(--ivory); }
     .dir-panel:hover::before { transform: scaleX(1); }
     .dir-panel:hover .dir-icon { transform: translateY(-3px); }
-
     .dir-icon { font-size: 2.4rem; margin-bottom: 20px; display: block; transition: transform .3s; }
     .dir-panel h3 {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.3rem; font-weight: 400;
-      color: var(--ink); margin-bottom: 12px;
+      font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 12px;
     }
     .dir-panel p { font-size: .88rem; color: var(--muted); line-height: 1.75; font-weight: 300; margin-bottom: 24px; }
     .dir-link {
@@ -152,7 +142,7 @@
     }
     .dir-link:hover { gap: 10px; color: var(--gold); }
 
-    /* ── TWO-COL PROMO ── */
+    /* ── PROMO SPLIT ── */
     .promo-split {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 24px; margin-top: 60px;
@@ -198,16 +188,11 @@
       .is-item{ padding:14px 16px; font-size:.78rem; }
       .promo-card{ padding:40px 28px; }
     }
-
-    @media(max-width:400px){
-      .hero-title{ font-size:2.3rem; }
-    }
- 
+    @media(max-width:400px){ .hero-title{ font-size:2.3rem; } }
   </style>
 </head>
 <body data-page="home">
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg-text">Р</div>
     <div class="hero-left">
@@ -215,7 +200,7 @@
       <h1 class="hero-title">
         Районное<br>потребительское<br><em>общество</em>
       </h1>
-      <p class="hero-desc">Продовольственные и промтоварные магазины, аптеки по всему Тосненскому району. Работаем для жителей с 1946 года.</p>
+      <p class="hero-desc">Продовольственные и промтоварные магазины, аптеки, общепит, ветклиника и зоомаркет по всему Тосненскому району. Работаем для жителей с 1946 года.</p>
       <div class="hero-btns">
         <a href="stores.html" class="btn btn-gold">Найти магазин</a>
         <a href="about.html"  class="btn btn-outline-light">Об организации</a>
@@ -225,11 +210,10 @@
       <div class="hero-stat"><div class="hs-val">1946</div><div class="hs-lbl">год основания</div></div>
       <div class="hero-stat"><div class="hs-val">40+</div><div class="hs-lbl">торговых объектов</div></div>
       <div class="hero-stat"><div class="hs-val">6</div><div class="hs-lbl">направлений</div></div>
-      <div class="hero-stat"><div class="hs-val">78</div><div class="hs-lbl">лет на рынке</div></div>
+      <div class="hero-stat"><div class="hs-val">300+</div><div class="hs-lbl">сотрудников</div></div>
     </div>
   </section>
 
-  <!-- INTRO STRIP -->
   <div class="intro-strip">
     <div class="is-item">🛒 Продовольственные магазины</div>
     <div class="is-item">🏪 Промтоварные магазины</div>
@@ -255,7 +239,7 @@
       <div class="dir-panel reveal reveal-d2">
         <span class="dir-icon">🏪</span>
         <h3>Промтоварная торговля</h3>
-        <p>Одежда, обувь, текстиль, хозяйственные и строительные товары, всё для сада и огорода. Доступные цены, удобные точки в каждом посёлке.</p>
+        <p>Одежда, обувь, текстиль, хозяйственные и строительные товары, всё для сада и огорода. Доступные цены в каждом посёлке района.</p>
         <a href="stores.html" class="dir-link">Найти магазин →</a>
       </div>
       <div class="dir-panel reveal reveal-d3">
@@ -267,7 +251,7 @@
       <div class="dir-panel reveal reveal-d1">
         <span class="dir-icon">🍽️</span>
         <h3>Общественное питание</h3>
-        <p>Столовые и кафе для жителей и работников района. Доступные комплексные обеды, выпечка, кулинария — вкусно, свежо и по разумной цене.</p>
+        <p>Столовые и кафе для жителей и работников района. Доступные комплексные обеды, свежая выпечка и кулинария каждый день.</p>
         <a href="stores.html" class="dir-link">Узнать подробнее →</a>
       </div>
       <div class="dir-panel reveal reveal-d2">
@@ -289,11 +273,11 @@
   <div class="data-bar">
     <div class="db-cell reveal reveal-d1"><span class="db-val">40+</span><span class="db-label">торговых объектов</span></div>
     <div class="db-cell reveal reveal-d2"><span class="db-val">78</span><span class="db-label">лет на рынке</span></div>
-    <div class="db-cell reveal reveal-d3"><span class="db-val">1000+</span><span class="db-label">пайщиков</span></div>
-    <div class="db-cell reveal reveal-d4"><span class="db-val">6</span><span class="db-label">направлений</span></div>
+    <div class="db-cell reveal reveal-d3"><span class="db-val">300+</span><span class="db-label">сотрудников</span></div>
+    <div class="db-cell reveal reveal-d4"><span class="db-val">18</span><span class="db-label">населённых пунктов</span></div>
   </div>
 
-  <!-- ПРОЧИЕ ПРЕИМУЩЕСТВА -->
+  <!-- ПРЕИМУЩЕСТВА -->
   <div class="section">
     <div class="reveal"><div class="overline">Наши преимущества</div></div>
     <div class="reveal display" style="margin-bottom:0">Почему выбирают<br><em>Тосненское Райпо</em></div>
@@ -314,9 +298,9 @@
         <p>Приоритет — фермерам Ленинградской области. Свежее, натуральное, с поддержкой местного агробизнеса.</p>
       </div>
       <div class="gc reveal reveal-d4">
-        <div class="gc-icon">🤝</div>
-        <h3>Кооперативное управление</h3>
-        <p>Пайщики участвуют в управлении и получают дивиденды. Открытая отчётность и народный контроль.</p>
+        <div class="gc-icon">💼</div>
+        <h3>Работа в Тосненском Райпо</h3>
+        <p>Стабильный работодатель с 1946 года. Официальное трудоустройство, достойная зарплата, социальный пакет.</p>
       </div>
     </div>
   </div>
@@ -325,27 +309,28 @@
   <div class="section" style="padding-top:0">
     <div class="promo-split">
       <div class="promo-card promo-dark reveal reveal-left">
-        <div class="overline" style="color:var(--gold-light)">Кооператив</div>
-        <h3>Организация,<br>подотчётная пайщикам</h3>
-        <p>Высший орган управления — общее собрание пайщиков. Ежегодная публичная отчётность. Дивиденды по итогам года.</p>
-        <a href="about.html" class="btn btn-gold">Стать пайщиком</a>
-        <div class="promo-deco">П</div>
+        <div class="overline" style="color:var(--gold-light)">Карьера</div>
+        <h3>Работайте<br>рядом с домом</h3>
+        <p>Более 300 сотрудников доверяют нам свою карьеру. Открытые вакансии — от продавцов до специалистов административных отделов по всему Тосненскому району.</p>
+        <a href="careers.html" class="btn btn-gold">Смотреть вакансии</a>
+        <div class="promo-deco">К</div>
       </div>
       <div class="promo-card promo-light reveal reveal-right">
         <div class="overline">Социальная миссия</div>
         <h3>Там, где нужны<br>больше всего</h3>
-        <p>Мы работаем в малых сёлах и деревнях, куда не доходят крупные ретейлеры. Для нас это не лозунг, а ежедневная практика.</p>
+        <p>Мы работаем в малых сёлах и деревнях, куда не доходят крупные ретейлеры. Для нас это не лозунг, а ежедневная практика с 1946 года.</p>
         <a href="stores.html" class="btn btn-forest">Торговая сеть</a>
         <div class="promo-deco">С</div>
       </div>
     </div>
   </div>
 
+  <!-- BAND — ВАКАНСИИ -->
   <div class="band">
-    <div class="reveal overline" style="justify-content:center">Членство в кооперативе</div>
-    <div class="reveal display display-white" style="font-size:clamp(1.8rem,3vw,2.8rem)">Вступите в потребительское общество</div>
-    <p class="reveal lead" style="margin:0 auto 36px; color:rgba(255,255,255,.5)">Пайщики Тосненского Райпо участвуют в управлении, получают дивиденды и специальные условия обслуживания во всех наших магазинах.</p>
-    <a href="contacts.html" class="btn btn-gold reveal">Подать заявку на членство</a>
+    <div class="reveal overline" style="justify-content:center">Присоединяйтесь к команде</div>
+    <div class="reveal display display-white" style="font-size:clamp(1.8rem,3vw,2.8rem)">Открытые вакансии<br><em>Тосненского Райпо</em></div>
+    <p class="reveal lead" style="margin:0 auto 36px; color:rgba(255,255,255,.5)">Мы ищем ответственных и инициативных сотрудников в магазины, аптеки, кафе и административные отделы по всему Тосненскому району.</p>
+    <a href="careers.html" class="btn btn-gold reveal">Все вакансии на hh.ru →</a>
   </div>
 
   <script src="nav.js"></script>

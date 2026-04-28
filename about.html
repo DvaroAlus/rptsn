@@ -14,35 +14,25 @@
     .about-grid { display:grid; grid-template-columns:1fr 360px; gap:80px; align-items:start; }
     @media(max-width:1024px){ .about-grid{ grid-template-columns:1fr; gap:52px; } }
 
-    /* Timeline */
     .timeline { border-top:1px solid var(--rule); margin-top:48px; }
     .tl-row {
       display:grid; grid-template-columns:90px 1fr; gap:40px;
-      padding:32px 0; border-bottom:1px solid var(--rule);
-      transition: background .25s;
+      padding:32px 0; border-bottom:1px solid var(--rule); transition: background .25s;
     }
     .tl-row:hover { background:var(--ivory); margin:0 -16px; padding-left:16px; padding-right:16px; }
-    .tl-year {
-      font-family:'DM Serif Display',serif;
-      font-size:1.3rem; color:var(--gold); padding-top:3px; line-height:1.2;
-    }
+    .tl-year { font-family:'DM Serif Display',serif; font-size:1.3rem; color:var(--gold); padding-top:3px; line-height:1.2; }
     .tl-body h3 { font-family:'DM Serif Display',serif; font-size:1.1rem; font-weight:400; color:var(--ink); margin-bottom:6px; }
     .tl-body p  { font-size:.87rem; color:var(--muted); line-height:1.75; font-weight:300; }
 
-    /* Принципы */
-    .principles { margin-top:52px; }
-    .prin-item {
+    .values-list { margin-top:52px; }
+    .val-item {
       padding:24px 0; border-bottom:1px solid var(--rule);
       display:grid; grid-template-columns:28px 1fr; gap:20px; align-items:start;
     }
-    .prin-num {
-      font-family:'DM Serif Display',serif; font-size:.9rem;
-      color:var(--gold); padding-top:3px;
-    }
-    .prin-item h4 { font-size:.95rem; font-weight:500; color:var(--ink); margin-bottom:4px; }
-    .prin-item p  { font-size:.85rem; color:var(--muted); font-weight:300; line-height:1.7; }
+    .val-num { font-family:'DM Serif Display',serif; font-size:.9rem; color:var(--gold); padding-top:3px; }
+    .val-item h4 { font-size:.95rem; font-weight:500; color:var(--ink); margin-bottom:4px; }
+    .val-item p  { font-size:.85rem; color:var(--muted); font-weight:300; line-height:1.7; }
 
-    /* Sidebar */
     .info-card {
       background:var(--white); border:1px solid var(--rule);
       padding:32px; margin-bottom:20px;
@@ -54,8 +44,7 @@
     }
     .info-card h4 {
       font-family:'DM Serif Display',serif; font-size:1.05rem; font-weight:400;
-      color:var(--ink); margin-bottom:20px; padding-bottom:14px;
-      border-bottom:1px solid var(--rule);
+      color:var(--ink); margin-bottom:20px; padding-bottom:14px; border-bottom:1px solid var(--rule);
     }
     .info-row {
       display:flex; justify-content:space-between; align-items:baseline;
@@ -81,13 +70,13 @@
       <div>
         <div class="reveal"><div class="overline">История</div></div>
         <div class="display reveal" style="font-size:2rem; margin-bottom:16px">Почти 80 лет<br><em>вместе с районом</em></div>
-        <p class="lead reveal" style="margin-bottom:0">Организация прошла путь от первых послевоенных прилавков до разветвлённой сети магазинов и аптек, не изменив главному — работе для людей.</p>
+        <p class="lead reveal" style="margin-bottom:0">Организация прошла путь от первых послевоенных прилавков до разветвлённой многоотраслевой структуры, не изменив главному — работе для людей.</p>
 
         <div class="timeline">
           <div class="tl-row reveal reveal-d1">
             <div class="tl-year">1946</div>
             <div class="tl-body">
-              <h3>Основание потребительского общества</h3>
+              <h3>Основание организации</h3>
               <p>Первые торговые точки обеспечивали жителей товарами первой необходимости в период восстановления Тосненского района после войны.</p>
             </div>
           </div>
@@ -116,28 +105,28 @@
             <div class="tl-year">Сегодня</div>
             <div class="tl-body">
               <h3>Современная многоотраслевая структура</h3>
-              <p>Более 40 объектов в 18 населённых пунктах. Шесть направлений деятельности. Свыше тысячи членов-пайщиков.</p>
+              <p>Более 40 объектов в 18 населённых пунктах. Шесть направлений деятельности: продовольственная и промтоварная торговля, аптеки, общепит, ветклиника, зоомаркет.</p>
             </div>
           </div>
         </div>
 
-        <div class="principles reveal">
+        <div class="values-list reveal">
           <div class="overline" style="margin-top:52px">Принципы работы</div>
-          <div class="prin-item">
-            <div class="prin-num">I</div>
-            <div><h4>Добровольное и открытое членство</h4><p>Кооператив открыт для всех граждан, готовых пользоваться услугами и взять на себя вытекающие из членства обязательства.</p></div>
+          <div class="val-item">
+            <div class="val-num">I</div>
+            <div><h4>Доступность для каждого</h4><p>Работаем в малых сёлах и деревнях, куда не доходят федеральные ретейлеры — чтобы каждый житель района имел доступ к необходимым товарам рядом с домом.</p></div>
           </div>
-          <div class="prin-item">
-            <div class="prin-num">II</div>
-            <div><h4>Демократический контроль членов</h4><p>Пайщики активно участвуют в выработке политики и принятии ключевых решений. Один пайщик — один голос.</p></div>
+          <div class="val-item">
+            <div class="val-num">II</div>
+            <div><h4>Честная цена</h4><p>Прямые договоры с местными производителями и поставщиками без лишних посредников. Цена отражает реальную стоимость товара, а не накрутки цепочки дистрибуции.</p></div>
           </div>
-          <div class="prin-item">
-            <div class="prin-num">III</div>
-            <div><h4>Экономическое участие членов</h4><p>Часть дохода распределяется среди пайщиков пропорционально объёму операций по решению общего собрания.</p></div>
+          <div class="val-item">
+            <div class="val-num">III</div>
+            <div><h4>Поддержка местной экономики</h4><p>Приоритет — фермерским хозяйствам и производителям Ленинградской области. Мы создаём рабочие места и развиваем инфраструктуру Тосненского района.</p></div>
           </div>
-          <div class="prin-item">
-            <div class="prin-num">IV</div>
-            <div><h4>Забота об обществе</h4><p>Работаем в интересах устойчивого развития сообщества — особенно там, где нет других торговых организаций.</p></div>
+          <div class="val-item">
+            <div class="val-num">IV</div>
+            <div><h4>Ответственность перед сотрудниками</h4><p>Официальное трудоустройство, достойная заработная плата и социальный пакет для каждого из 300+ сотрудников организации.</p></div>
           </div>
         </div>
       </div>
@@ -156,14 +145,13 @@
           <h4>Показатели</h4>
           <div class="info-row"><span class="info-lbl">Торговых объектов</span><span class="info-val">40+</span></div>
           <div class="info-row"><span class="info-lbl">Населённых пунктов</span><span class="info-val">18</span></div>
-          <div class="info-row"><span class="info-lbl">Пайщиков</span><span class="info-val">1 000+</span></div>
           <div class="info-row"><span class="info-lbl">Сотрудников</span><span class="info-val">300+</span></div>
           <div class="info-row"><span class="info-lbl">Направлений</span><span class="info-val">6</span></div>
         </div>
         <div class="info-card reveal" style="background:var(--forest); border-color:var(--forest)">
-          <h4 style="color:var(--gold-light); border-bottom-color:rgba(255,255,255,.08)">Стать пайщиком</h4>
-          <p style="font-size:.86rem; color:rgba(255,255,255,.45); font-weight:300; line-height:1.8; margin-bottom:24px">Вступите в потребительское общество, внесите паевой взнос и получите право участвовать в управлении организацией и распределении дивидендов.</p>
-          <a href="contacts.html" class="btn btn-gold" style="width:100%; justify-content:center">Подать заявку</a>
+          <h4 style="color:var(--gold-light); border-bottom-color:rgba(255,255,255,.08)">Работа в Райпо</h4>
+          <p style="font-size:.86rem; color:rgba(255,255,255,.45); font-weight:300; line-height:1.8; margin-bottom:24px">Стабильный работодатель с многолетней историей. Официальное трудоустройство, достойная зарплата, полный социальный пакет.</p>
+          <a href="careers.html" class="btn btn-gold" style="width:100%; justify-content:center">Открытые вакансии</a>
         </div>
       </div>
     </div>

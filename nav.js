@@ -16,6 +16,7 @@
     <li><a href="about.html"    ${a('about')}>Об организации</a></li>
     <li><a href="stores.html"   ${a('stores')}>Торговая сеть</a></li>
     <li><a href="news.html"     ${a('news')}>Новости</a></li>
+    <li><a href="careers.html"   ${a('careers')}>Вакансии</a></li>
     <li><a href="contacts.html" class="nav-cta">Контакты</a></li>
   </ul>
   <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
@@ -28,6 +29,7 @@
     <a href="about.html"    ${page==='about'?'class="active"':''}>Об организации</a>
     <a href="stores.html"   ${page==='stores'?'class="active"':''}>Торговая сеть</a>
     <a href="news.html"     ${page==='news'?'class="active"':''}>Новости</a>
+    <a href="careers.html"  ${page==="careers"?'class="active"':''}>Вакансии</a>
     <a href="contacts.html" class="mobile-cta">Контакты</a>
   </nav>
   <div class="mobile-footer-info">
@@ -52,6 +54,7 @@
       <a href="about.html">Об организации</a>
       <a href="stores.html">Торговая сеть</a>
       <a href="news.html">Новости</a>
+      <a href="careers.html">Вакансии</a>
       <a href="contacts.html">Контакты</a>
     </div>
     <div class="footer-col">

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вакансии — Тосненское Райпо</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .careers-wrap { max-width:1160px; margin:0 auto; padding:80px 52px 88px; }
+    @media(max-width:768px){ .careers-wrap{ padding:48px 20px 64px; } }
+
+    /* Верхний блок — hh.ru CTA */
+    .hh-banner {
+      background: var(--ivory); border: 1px solid var(--rule);
+      padding: 48px 52px; margin-bottom: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px; flex-wrap: wrap;
+      position: relative; overflow: hidden;
+    }
+    .hh-banner::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+      background: linear-gradient(to bottom, var(--forest-soft), var(--gold));
+    }
+    .hh-banner-left { flex: 1; min-width: 240px; }
+    .hh-banner-left h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 400;
+      color: var(--ink); margin-bottom: 10px; line-height: 1.2;
+    }
+    .hh-banner-left p { font-size: .9rem; color: var(--muted); font-weight: 300; line-height: 1.75; }
+    .hh-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem; color: var(--muted); opacity: .25;
+      position: absolute; right: 48px; bottom: -8px;
+      pointer-events: none; user-select: none;
+    }
+    @media(max-width:600px){ .hh-banner{ padding:32px 28px; } .hh-logo{ display:none; } }
+
+    /* Преимущества работодателя */
+    .perks-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+      margin-bottom: 72px;
+    }
+    @media(max-width:768px){ .perks-grid{ grid-template-columns:1fr; } }
+    .perk {
+      background: var(--white); padding: 36px 32px;
+      transition: background .25s; position: relative;
+    }
+    .perk::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--forest-soft), var(--gold));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .35s cubic-bezier(.4,0,.2,1);
+    }
+    .perk:hover { background: var(--ivory); }
+    .perk:hover::after { transform: scaleX(1); }
+    .perk-icon { font-size: 1.8rem; margin-bottom: 16px; display: block; }
+    .perk h4 { font-family:'DM Serif Display',serif; font-size:1.05rem; font-weight:400; color:var(--ink); margin-bottom:8px; }
+    .perk p  { font-size:.86rem; color:var(--muted); font-weight:300; line-height:1.7; }
+
+    /* Вакансии */
+    .vacancies-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap; margin-bottom: 32px;
+    }
+    .vacancies-header h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400;
+      color: var(--ink); line-height: 1.15;
+    }
+    .vacancies-header h2 em { font-style: italic; color: var(--forest-soft); }
+
+    /* Фильтр */
+    .vac-filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--rule); }
+    .vf {
+      font-family:'Outfit',sans-serif; font-size:.75rem; font-weight:500;
+      letter-spacing:.05em; padding:8px 18px; cursor:pointer;
+      border:1.5px solid var(--rule); background:transparent; color:var(--muted);
+      transition:all .22s;
+    }
+    .vf.active, .vf:hover { background:var(--forest); color:var(--white); border-color:var(--forest); }
+
+    /* Карточки вакансий */
+    .vac-list { display:flex; flex-direction:column; gap:1px; background:var(--rule); border:1px solid var(--rule); }
+    .vac-card {
+      background: var(--white); padding: 28px 36px;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 20px; align-items: center;
+      transition: background .2s; cursor: default;
+    }
+    .vac-card:hover { background: var(--ivory); }
+    @media(max-width:600px){ .vac-card{ grid-template-columns:1fr; padding:24px 20px; } }
+
+    .vac-dept {
+      font-size:.68rem; font-weight:600; text-transform:uppercase;
+      letter-spacing:.1em; margin-bottom:7px;
+    }
+    .dept-food  { color:#2D6A30; }
+    .dept-prom  { color:#7A4A10; }
+    .dept-pharm { color:#1A3A7A; }
+    .dept-food-svc { color:#6A3A10; }
+    .dept-vet   { color:#5A1A6A; }
+    .dept-admin { color:#3A3A5A; }
+
+    .vac-title { font-family:'DM Serif Display',serif; font-size:1.1rem; font-weight:400; color:var(--ink); margin-bottom:8px; }
+    .vac-meta  { display:flex; gap:20px; flex-wrap:wrap; }
+    .vac-tag   {
+      font-size:.75rem; color:var(--muted); font-weight:300;
+      display:inline-flex; align-items:center; gap:5px;
+    }
+
+    .vac-action { flex-shrink:0; }
+    .vac-action a {
+      display:inline-flex; align-items:center; gap:8px;
+      font-family:'Outfit',sans-serif; font-size:.75rem; font-weight:500;
+      letter-spacing:.06em; text-transform:uppercase;
+      text-decoration:none; color:var(--forest-soft);
+      padding:10px 20px; border:1.5px solid var(--rule);
+      transition:all .22s;
+    }
+    .vac-action a:hover { background:var(--forest); color:var(--white); border-color:var(--forest); }
+
+    /* CTA внизу */
+    .careers-cta {
+      background: var(--forest); padding: 56px 52px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 36px; flex-wrap: wrap; margin-top: 64px;
+      position: relative; overflow: hidden;
+    }
+    .careers-cta::before {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(184,136,42,.1) 0%, transparent 60%);
+      pointer-events:none;
+    }
+    .careers-cta-text { position:relative; z-index:1; }
+    .careers-cta-text h3 {
+      font-family:'DM Serif Display',serif; font-size:clamp(1.4rem,2.5vw,1.9rem);
+      color:var(--white); font-weight:400; margin-bottom:8px;
+    }
+    .careers-cta-text p { font-size:.88rem; color:rgba(255,255,255,.5); font-weight:300; }
+    .careers-cta-btn { position:relative; z-index:1; flex-shrink:0; }
+    @media(max-width:600px){ .careers-cta{ padding:36px 24px; } }
+  </style>
+</head>
+<body data-page="careers">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Главная</a> / Вакансии</div>
+      <div class="overline reveal">Карьера в Тосненском Райпо</div>
+      <h1 class="display reveal" style="color:var(--white)">Открытые <em>вакансии</em></h1>
+      <p class="lead reveal" style="color:rgba(255,255,255,.5)">Работайте рядом с домом в стабильной организации с 78-летней историей. Официальное трудоустройство, достойная зарплата, дружный коллектив</p>
+    </div>
+  </div>
+
+  <div class="careers-wrap">
+
+    <!-- HH.RU BANNER -->
+    <div class="hh-banner reveal">
+      <div class="hh-banner-left">
+        <h2>Все актуальные вакансии<br>на HeadHunter</h2>
+        <p>Актуальный список вакансий с подробным описанием, условиями и возможностью откликнуться онлайн. Работодатель — Тосненское Райпо на hh.ru.</p>
+      </div>
+      <a href="https://tosno.hh.ru/employer/3357344?hhtmFrom=employers_list&tab=DESCRIPTION" target="_blank" rel="noopener" class="btn btn-forest">
+        Открыть профиль на hh.ru ↗
+      </a>
+      <div class="hh-logo">hh.ru</div>
+    </div>
+
+    <!-- ПРЕИМУЩЕСТВА РАБОТОДАТЕЛЯ -->
+    <div class="reveal"><div class="overline">Почему мы</div></div>
+    <div class="display reveal" style="margin-bottom:48px">Работодатель,<br><em>которому доверяют</em></div>
+
+    <div class="perks-grid">
+      <div class="perk reveal reveal-d1">
+        <span class="perk-icon">📋</span>
+        <h4>Официальное трудоустройство</h4>
+        <p>Оформление по Трудовому кодексу РФ с первого дня. Запись в трудовую книжку, пенсионные отчисления, больничные и отпуска.</p>
+      </div>
+      <div class="perk reveal reveal-d2">
+        <span class="perk-icon">💵</span>
+        <h4>Стабильная заработная плата</h4>
+        <p>Своевременная выплата дважды в месяц. Прозрачная система начисления, без задержек — это наш стандарт на протяжении десятилетий.</p>
+      </div>
+      <div class="perk reveal reveal-d3">
+        <span class="perk-icon">📍</span>
+        <h4>Рядом с домом</h4>
+        <p>40+ объектов в 18 населённых пунктах Тосненского района. Высокая вероятность, что подходящая вакансия есть в вашем посёлке.</p>
+      </div>
+      <div class="perk reveal reveal-d1">
+        <span class="perk-icon">📈</span>
+        <h4>Карьерный рост</h4>
+        <p>Многие руководители начинали рядовыми сотрудниками. Мы развиваем таланты внутри организации и ценим инициативу.</p>
+      </div>
+      <div class="perk reveal reveal-d2">
+        <span class="perk-icon">🤝</span>
+        <h4>Дружный коллектив</h4>
+        <p>Более 300 сотрудников, объединённых общей миссией. Атмосфера взаимопомощи и уважения — основа нашей корпоративной культуры.</p>
+      </div>
+      <div class="perk reveal reveal-d3">
+        <span class="perk-icon">🎓</span>
+        <h4>Обучение и развитие</h4>
+        <p>Введение в должность, наставничество, обучение стандартам работы. Поддержка сотрудников на каждом этапе.</p>
+      </div>
+    </div>
+
+    <!-- ВАКАНСИИ -->
+    <div class="vacancies-header reveal">
+      <h2>Актуальные<br><em>вакансии</em></h2>
+      <a href="https://tosno.hh.ru/employer/3357344?hhtmFrom=employers_list&tab=DESCRIPTION" target="_blank" rel="noopener" class="btn btn-ghost">Все вакансии на hh.ru ↗</a>
+    </div>
+
+    <div class="vac-filters reveal">
+      <button class="vf active" onclick="filterVac('all',this)">Все направления</button>
+      <button class="vf" onclick="filterVac('food',this)">🛒 Продовольственные</button>
+      <button class="vf" onclick="filterVac('prom',this)">🏪 Промтоварные</button>
+      <button class="vf" onclick="filterVac('pharm',this)">💊 Аптеки</button>
+      <button class="vf" onclick="filterVac('food-svc',this)">🍽️ Общепит</button>
+      <button class="vf" onclick="filterVac('vet',this)">🐾 Ветклиника</button>
+      <button class="vf" onclick="filterVac('admin',this)">🏢 Администрация</button>
+    </div>
+
+    <div class="vac-list" id="vac-list">
+
+      <div class="vac-card reveal" data-dept="food">
+        <div>
+          <div class="vac-dept dept-food">🛒 Продовольственные магазины</div>
+          <div class="vac-title">Продавец-кассир</div>
+          <div class="vac-meta">
+            <span class="vac-tag">📍 г. Тосно / Любань / посёлки района</span>
+            <span class="vac-tag">💼 Полная занятость</span>
+            <span class="vac-tag">🕐 Сменный график</span>
+          </div>
+        </div>
+        <div class="vac-action"><a href="https://tosno.hh.ru/employer/3357344" target="_blank" rel="noopener">Откликнуться ↗</a></div>
+      </div>
+
+      <div class="vac-card reveal" data-dept="food">
+        <div>
+          <div class="vac-dept dept-food">🛒 Продовольственные магазины</div>
+          <div class="vac-title">Заведующий магазином</div>
+          <div class="vac-meta">
+            <span class="vac-tag">📍 Тосненский район</span>
+            <span class="vac-tag">💼 Полная занятость</span>
+            <span class="vac-tag">⭐ Опыт от 1 года</span>
+          </div>
+        </div>
+        <div class="vac-action"><a href="https://tosno.hh.ru/employer/3357344" target="_blank" rel="noopener">Откликнуться ↗</a></div>
+      </div>
+
+      <div class="vac-card reveal" data-dept="prom">
+        <div>
+          <div class="vac-dept dept-prom">🏪 Промтоварные магазины</div>
+          <div class="vac-title">Продавец-консультант</div>
+          <div class="vac-meta">
+            <span class="vac-tag">📍 г. Тосно</span>
+            <span class="vac-tag">💼 Полная занятость</span>
+            <span class="vac-tag">🕐 5/2</span>
+          </div>
+        </div>
+        <div class="vac-action"><a href="https://tosno.hh.ru/employer/3357344" target="_blank" rel="noopener">Откликнуться ↗</a></div>
+      </div>
+
+      <div class="vac-card reveal" data-dept="pharm">
+        <div>
+          <div class="vac-dept dept-pharm">💊 Аптечная сеть</div>
+          <div class="vac-title">Фармацевт / провизор</div>
+          <div class="vac-meta">
+            <span class="vac-tag">📍 г. Тосно, г. Любань</span>
+            <span class="vac-tag">💼 Полная занятость</span>
+            <span class="vac-tag">🎓 Профильное образование</span>
+          </div>
+        </div>
+        <div class="vac-action"><a href="https://tosno.hh.ru/employer/3357344" target="_blank" rel="noopener">Откликнуться ↗</a></div>
+      </div>
+
+      <div class="vac-card reveal" data-dept="food-svc">
+        <div>
+          <div class="vac-dept dept-food-svc">🍽️ Общественное питание</div>
+          <div class="vac-title">Повар / кухонный работник</div>
+          <div class="vac-meta">
+            <span class="vac-tag">📍 г. Тосно</span>
+            <span class="vac-tag">💼 Полная занятость</span>
+            <span class="vac-tag">🕐 Пн – Пт</span>
+          </div>
+        </div>
+        <div class="vac-action"><a href="https://tosno.hh.ru/employer/3357344" target="_blank" rel="noopener">Откликнуться ↗</a></div>
+      </div>
+
+      <div class="vac-card reveal" data-dept="food-svc">
+        <div>
+          <div class="vac-dept dept-food-svc">🍽️ Общественное питание</div>
+          <div class="vac-title">Кассир столовой</div>
+          <div class="vac-meta">
+            <span class="vac-tag">📍 г. Тосно</span>
+            <span class="vac-tag">💼 Полная занятость</span>
+            <span class="vac-tag">🕐 Пн – Пт</span>
+          </div>
+        </div>
+        <div class="vac-action"><a href="https://tosno.hh.ru/employer/3357344" target="_blank" rel="noopener">Откликнуться ↗</a></div>
+      </div>
+
+      <div class="vac-card reveal" data-dept="vet">
+        <div>
+          <div class="vac-dept dept-vet">🐾 Ветеринарная клиника</div>
+          <div class="vac-title">Ветеринарный врач</div>
+          <div class="vac-meta">
+            <span class="vac-tag">📍 г. Тосно, ул. Строителей, 3</span>
+            <span class="vac-tag">💼 Полная занятость</span>
+            <span class="vac-tag">🎓 Ветеринарное образование</span>
+          </div>
+        </div>
+        <div class="vac-action"><a href="https://tosno.hh.ru/employer/3357344" target="_blank" rel="noopener">Откликнуться ↗</a></div>
+      </div>
+
+      <div class="vac-card reveal" data-dept="vet">
+        <div>
+          <div class="vac-dept dept-vet">🐾 Зоомаркет</div>
+          <div class="vac-title">Продавец-консультант зоомаркета</div>
+          <div class="vac-meta">
+            <span class="vac-tag">📍 г. Тосно</span>
+            <span class="vac-tag">💼 Полная занятость</span>
+            <span class="vac-tag">🐶 Любовь к животным приветствуется</span>
+          </div>
+        </div>
+        <div class="vac-action"><a href="https://tosno.hh.ru/employer/3357344" target="_blank" rel="noopener">Откликнуться ↗</a></div>
+      </div>
+
+      <div class="vac-card reveal" data-dept="admin">
+        <div>
+          <div class="vac-dept dept-admin">🏢 Администрация</div>
+          <div class="vac-title">Бухгалтер</div>
+          <div class="vac-meta">
+            <span class="vac-tag">📍 г. Тосно, ул. Советская, 7</span>
+            <span class="vac-tag">💼 Полная занятость</span>
+            <span class="vac-tag">🎓 Профильное образование</span>
+          </div>
+        </div>
+        <div class="vac-action"><a href="https://tosno.hh.ru/employer/3357344" target="_blank" rel="noopener">Откликнуться ↗</a></div>
+      </div>
+
+      <div class="vac-card reveal" data-dept="admin">
+        <div>
+          <div class="vac-dept dept-admin">🏢 Администрация</div>
+          <div class="vac-title">Специалист по кадрам</div>
+          <div class="vac-meta">
+            <span class="vac-tag">📍 г. Тосно, ул. Советская, 7</span>
+            <span class="vac-tag">💼 Полная занятость</span>
+            <span class="vac-tag">⭐ Опыт от 1 года</span>
+          </div>
+        </div>
+        <div class="vac-action"><a href="https://tosno.hh.ru/employer/3357344" target="_blank" rel="noopener">Откликнуться ↗</a></div>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="careers-cta reveal">
+      <div class="careers-cta-text">
+        <h3>Не нашли подходящую вакансию?</h3>
+        <p>На hh.ru публикуются все актуальные открытые позиции. Также можно отправить резюме напрямую — мы свяжемся при появлении подходящей вакансии.</p>
+      </div>
+      <div class="careers-cta-btn">
+        <a href="https://tosno.hh.ru/employer/3357344?hhtmFrom=employers_list&tab=DESCRIPTION" target="_blank" rel="noopener" class="btn btn-gold" style="margin-bottom:12px; display:flex">Профиль на hh.ru ↗</a>
+        <a href="contacts.html" class="btn btn-outline-light" style="display:flex">Написать напрямую</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function filterVac(dept, btn) {
+      document.querySelectorAll('.vf').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.vac-card').forEach(c => {
+        c.style.display = (dept === 'all' || c.dataset.dept === dept) ? '' : 'none';
+      });
+    }
+  </script>
+  <script src="nav.js"></script>
+</body>
+</html>
