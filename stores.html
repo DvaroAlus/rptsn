@@ -12,7 +12,7 @@
     @media(max-width:768px){ .stores-body{ padding:48px 20px 60px; } }
 
     .map-block {
-      background:var(--forest); height:320px;
+      /*background:var(--forest);*/ height:340px;
       display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px;
       margin-bottom:52px; position:relative; overflow:hidden;
     }
@@ -87,9 +87,9 @@
   <div class="stores-body">
     <div class="map-block reveal">
       <div class="map-block-inner">
-        <h3>Интерактивная карта</h3>
-        <p>Все объекты на карте Тосненского района</p>
-        <a href="https://yandex.ru/maps/?text=Тосненское+Райпо" target="_blank" class="btn btn-gold">Открыть в Яндекс.Картах ↗</a>
+        <!--<h3>Интерактивная карта</h3>
+        <p>Все объекты на карте Тосненского района</p>-->
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Abe4173307a73531adb0d6b73cb50b80eeaf0a897e98361910186edfa95c6124d&amp;source=constructor" width="1056" height="340" frameborder="0"></iframe>
       </div>
     </div>
 
@@ -116,13 +116,14 @@
       <div class="sc reveal reveal-d1" data-type="prom"><span class="sc-badge b-prom">Промтоварный</span><h3>Текстиль и Дом</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Строителей, 7</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">10:00 – 19:00, пн – сб</span></div></div></div>
       <div class="sc reveal reveal-d2" data-type="prom"><span class="sc-badge b-prom">Промтоварный</span><h3>Любань Универсал</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Любань, ул. Гагарина, 12</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 18:00, пн – сб</span></div></div></div>
       <div class="sc reveal reveal-d3" data-type="prom"><span class="sc-badge b-prom">Промтоварный</span><h3>Всё для дачи</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Садовая, 15</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, ежедневно</span></div></div></div>
-      <div class="sc reveal reveal-d1" data-type="pharm"><span class="sc-badge b-pharm">Аптека</span><h3>Аптека Райпо №1</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Советская, 12</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 20:00, ежедневно</span></div></div></div>
-      <div class="sc reveal reveal-d2" data-type="pharm"><span class="sc-badge b-pharm">Аптека</span><h3>Аптека Райпо №2</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, пр. Ленина, 18</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 20:00, ежедневно</span></div></div></div>
-      <div class="sc reveal reveal-d3" data-type="pharm"><span class="sc-badge b-pharm">Аптека</span><h3>Аптека Любань</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Любань, ул. Советская, 5</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:30 – 19:30, пн – пт</span></div></div></div>
-      <div class="sc reveal reveal-d1" data-type="food_service"><span class="sc-badge b-food-svc">Общественное питание</span><h3>Столовая «Тосно»</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, пр. Ленина, 15</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 18:00, пн – пт</span></div></div></div>
-      <div class="sc reveal reveal-d2" data-type="food_service"><span class="sc-badge b-food-svc">Общественное питание</span><h3>Кафе «Любань»</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Любань, ул. Советская, 3</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">10:00 – 20:00, ежедневно</span></div></div></div>
-      <div class="sc reveal reveal-d3" data-type="vet"><span class="sc-badge b-vet">Ветеринарная клиника</span><h3>Ветклиника Райпо</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Строителей, 3</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 18:00, пн – сб</span></div></div></div>
-      <div class="sc reveal reveal-d1" data-type="vet"><span class="sc-badge b-zoo">Зоомаркет</span><h3>Зоомаркет Райпо</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Строителей, 3</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d1" data-type="pharm"><span class="sc-badge b-pharm">Аптека</span><h3>Аптека Райпо №1</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Советская, 7</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d2" data-type="pharm"><span class="sc-badge b-pharm">Аптека</span><h3>Аптечный пункт №6</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Советская, 10</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d3" data-type="pharm"><span class="sc-badge b-pharm">Аптека</span><h3>Аптека Любань</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Любань, ш. Московское, 4</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:30 – 19:30, пн – пт</span></div></div></div>
+      <div class="sc reveal reveal-d3" data-type="pharm"><span class="sc-badge b-pharm">Аптека</span><h3>Аптечный пункт №2</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>гп. Ульяновка, пр. Советский, 2</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:30 – 19:30, пн – пт</span></div></div></div>
+      <div class="sc reveal reveal-d1" data-type="food_service"><span class="sc-badge b-food-svc">Общественное питание</span><h3>Кафе «Мираж»</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Советская, 7</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 18:00, пн – пт</span></div></div></div>
+      <div class="sc reveal reveal-d2" data-type="food_service"><span class="sc-badge b-food-svc">Общественное питание</span><h3>Кафе «Витязь»</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Любань, ш. Московское, 4</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">10:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d3" data-type="vet"><span class="sc-badge b-vet">Ветеринарная клиника</span><h3>Ветклиника Райпо</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ш. Барыбина, 6</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 18:00, пн – сб</span></div></div></div>
+      <div class="sc reveal reveal-d1" data-type="vet"><span class="sc-badge b-zoo">Зоомаркет</span><h3>Зоомаркет Райпо</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Советская, 6</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, ежедневно</span></div></div></div>
     </div>
   </div>
   <script>
