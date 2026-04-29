@@ -12,7 +12,7 @@
     @media(max-width:768px){ .stores-body{ padding:48px 20px 60px; } }
 
     .map-block {
-      /*background:var(--forest);*/ height:340px;
+      background:var(--forest); height:320px;
       display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px;
       margin-bottom:52px; position:relative; overflow:hidden;
     }
@@ -29,12 +29,13 @@
     .map-block p  { color:rgba(255,255,255,.4); font-size:.85rem; font-weight:300; margin-bottom:20px; }
 
     /* Filters */
-    .filter-bar { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--rule); }
+    .filter-bar { display:flex; align-items:center; gap:6px; flex-wrap:nowrap; overflow-x:auto; margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--rule); scrollbar-width:none; }
+    .filter-bar::-webkit-scrollbar { display:none; }
     .fb {
-      font-family:'Outfit',sans-serif; font-size:.76rem; font-weight:500;
-      letter-spacing:.06em; padding:9px 20px; cursor:pointer;
+      font-family:'Outfit',sans-serif; font-size:.73rem; font-weight:500;
+      letter-spacing:.03em; padding:8px 14px; cursor:pointer;
       border:1.5px solid var(--rule); background:transparent; color:var(--muted);
-      transition:all .25s;
+      transition:all .25s; white-space:nowrap; flex-shrink:0;
     }
     .fb.active,.fb:hover { background:var(--forest); color:var(--white); border-color:var(--forest); }
     .stores-count { font-size:.8rem; color:var(--muted); margin-bottom:20px; font-weight:300; }
@@ -66,6 +67,8 @@
     .b-food-svc   { border-color:#6A4A2A; color:#4A2A0A; background:#F7F0E4; }
     .b-vet        { border-color:#6A2A6A; color:#4A0A4A; background:#F4E4F7; }
     .b-zoo        { border-color:#2A6A4A; color:#0A4A2A; background:#E4F7EC; }
+    .b-jewel      { border-color:#6A5A2A; color:#4A3A0A; background:#F7F4E4; }
+
 
     .sc h3 { font-family:'DM Serif Display',serif; font-size:1.05rem; font-weight:400; margin-bottom:12px; color:var(--ink); }
     .sc-meta { display:flex; flex-direction:column; gap:7px; }
@@ -100,22 +103,31 @@
       <button class="fb" onclick="f('pharm',this)">💊 Аптеки</button>
       <button class="fb" onclick="f('food_service',this)">🍽️ Общепит</button>
       <button class="fb" onclick="f('vet',this)">🐾 Ветклиника и зоомаркет</button>
+      <button class="fb" onclick="f('jewel',this)">💎 Ювелирный</button>
     </div>
-    <div class="stores-count reveal" id="cnt">Показано объектов: <strong>19</strong></div>
+    <div class="stores-count reveal" id="cnt">Показано объектов: <strong>28</strong></div>
 
     <div class="sc-grid" id="sc-grid">
-      <div class="sc reveal reveal-d1" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Тосно Центральный</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Советская, 7</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 21:00, ежедневно</span></div></div></div>
-      <div class="sc reveal reveal-d2" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Лесколово</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Лесколово, ул. Центральная, 5</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 20:00, ежедневно</span></div></div></div>
-      <div class="sc reveal reveal-d3" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Николаевское</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Николаевское, ул. Ленина, 3</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, ежедневно</span></div></div></div>
-      <div class="sc reveal reveal-d1" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Любань</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Любань, ул. Советская, 8</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 21:00, ежедневно</span></div></div></div>
-      <div class="sc reveal reveal-d2" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Ульяновка</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Ульяновка, ул. Кирова, 14</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 20:00, ежедневно</span></div></div></div>
-      <div class="sc reveal reveal-d3" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Красный Бор</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Красный Бор, ул. Лесная, 2</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 20:00, ежедневно</span></div></div></div>
-      <div class="sc reveal reveal-d1" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Рябово</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Рябово, ул. Молодёжная, 1</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, ежедневно</span></div></div></div>
-      <div class="sc reveal reveal-d2" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Шапки</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Шапки, ул. Садовая, 7</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 20:00, ежедневно</span></div></div></div>
-      <div class="sc reveal reveal-d3" data-type="prom"><span class="sc-badge b-prom">Промтоварный</span><h3>Хозяин</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, пр. Ленина, 22</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, пн – сб</span></div></div></div>
-      <div class="sc reveal reveal-d1" data-type="prom"><span class="sc-badge b-prom">Промтоварный</span><h3>Текстиль и Дом</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Строителей, 7</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">10:00 – 19:00, пн – сб</span></div></div></div>
-      <div class="sc reveal reveal-d2" data-type="prom"><span class="sc-badge b-prom">Промтоварный</span><h3>Любань Универсал</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Любань, ул. Гагарина, 12</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 18:00, пн – сб</span></div></div></div>
-      <div class="sc reveal reveal-d3" data-type="prom"><span class="sc-badge b-prom">Промтоварный</span><h3>Всё для дачи</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Садовая, 15</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d1" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Магазин №6</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Советская, 7</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 21:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d2" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Магазин №7</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Лесколово, ул. Центральная, 5</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d3" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Магазин №12</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Николаевское, ул. Ленина, 3</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d1" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Магазин №13</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Любань, ул. Советская, 8</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 21:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d2" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Магазин №16</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Ульяновка, ул. Кирова, 14</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d3" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Магазин №17</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Красный Бор, ул. Лесная, 2</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d1" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Магазин №20</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Рябово, ул. Молодёжная, 1</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d2" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Магазин №22</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Шапки, ул. Садовая, 7</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d1" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Магазин №24</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Советская, 7</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 21:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d2" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Магазин №26</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Лесколово, ул. Центральная, 5</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d3" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Магазин №27</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Николаевское, ул. Ленина, 3</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d1" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Магазин №56</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Любань, ул. Советская, 8</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 21:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d2" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Магазин №65</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Ульяновка, ул. Кирова, 14</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d3" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Магазин №66</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>пос. Красный Бор, ул. Лесная, 2</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 20:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d1" data-type="food"><span class="sc-badge b-food">Продовольственный</span><h3>Магазин №69</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Советская, 7</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 21:00, ежедневно</span></div></div></div>
+      
+      <div class="sc reveal reveal-d3" data-type="prom"><span class="sc-badge b-prom">Промтоварный</span><h3>Хозяюшка</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, пр. Советская, 6</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, пн – сб</span></div></div></div>
+      <div class="sc reveal reveal-d1" data-type="prom"><span class="sc-badge b-prom">Промтоварный</span><h3>Универмаг</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, пр. Ленина, 47</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">10:00 – 19:00, пн – сб</span></div></div></div>
+      <div class="sc reveal reveal-d2" data-type="prom"><span class="sc-badge b-prom">Промтоварный</span><h3>Хозяюшка</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Советская, 7</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 18:00, пн – сб</span></div></div></div>
+      <div class="sc reveal reveal-d3" data-type="prom"><span class="sc-badge b-prom">Промтоварный</span><h3>Хозяюшка</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Любань, ул. Ленина, 28А</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, ежедневно</span></div></div></div>
       <div class="sc reveal reveal-d1" data-type="pharm"><span class="sc-badge b-pharm">Аптека</span><h3>Аптека Райпо №1</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Советская, 7</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:00 – 20:00, ежедневно</span></div></div></div>
       <div class="sc reveal reveal-d2" data-type="pharm"><span class="sc-badge b-pharm">Аптека</span><h3>Аптечный пункт №6</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Советская, 10</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 20:00, ежедневно</span></div></div></div>
       <div class="sc reveal reveal-d3" data-type="pharm"><span class="sc-badge b-pharm">Аптека</span><h3>Аптека Любань</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Любань, ш. Московское, 4</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">08:30 – 19:30, пн – пт</span></div></div></div>
@@ -124,6 +136,7 @@
       <div class="sc reveal reveal-d2" data-type="food_service"><span class="sc-badge b-food-svc">Общественное питание</span><h3>Кафе «Витязь»</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Любань, ш. Московское, 4</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">10:00 – 20:00, ежедневно</span></div></div></div>
       <div class="sc reveal reveal-d3" data-type="vet"><span class="sc-badge b-vet">Ветеринарная клиника</span><h3>Ветклиника Райпо</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ш. Барыбина, 6</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 18:00, пн – сб</span></div></div></div>
       <div class="sc reveal reveal-d1" data-type="vet"><span class="sc-badge b-zoo">Зоомаркет</span><h3>Зоомаркет Райпо</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Советская, 6</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">09:00 – 19:00, ежедневно</span></div></div></div>
+      <div class="sc reveal reveal-d2" data-type="jewel"><span class="sc-badge b-jewel">💎 Ювелирный</span><h3>Ювелирный магазин Райпо</h3><div class="sc-meta"><div class="sc-row"><span class="i">📍</span><span>г. Тосно, ул. Советская, 7</span></div><div class="sc-row"><span class="i">🕐</span><span class="sc-hours">10:00 – 19:00, пн – сб</span></div></div></div>
     </div>
   </div>
   <script>

@@ -103,7 +103,9 @@
     .dept-pharm { color:#1A3A7A; }
     .dept-food-svc { color:#6A3A10; }
     .dept-vet   { color:#5A1A6A; }
+    .dept-jewelry{ color:#4A1A6A; }
     .dept-admin { color:#3A3A5A; }
+    .dept-jewel { color:#6A5010; }
 
     .vac-title { font-family:'DM Serif Display',serif; font-size:1.1rem; font-weight:400; color:var(--ink); margin-bottom:8px; }
     .vac-meta  { display:flex; gap:20px; flex-wrap:wrap; }
@@ -219,7 +221,9 @@
       <button class="vf" onclick="filterVac('pharm',this)">💊 Аптеки</button>
       <button class="vf" onclick="filterVac('food-svc',this)">🍽️ Общепит</button>
       <button class="vf" onclick="filterVac('vet',this)">🐾 Ветклиника</button>
+      <button class="vf" onclick="filterVac('jewelry',this)">💍 Ювелирный</button>
       <button class="vf" onclick="filterVac('admin',this)">🏢 Администрация</button>
+      <button class="vf" onclick="filterVac('jewel',this)">💎 Ювелирный</button>
     </div>
 
     <div class="vac-list" id="vac-list">
@@ -328,6 +332,19 @@
         <div class="vac-action"><a href="https://tosno.hh.ru/employer/3357344" target="_blank" rel="noopener">Откликнуться ↗</a></div>
       </div>
 
+      <div class="vac-card reveal" data-dept="jewelry">
+        <div>
+          <div class="vac-dept dept-jewelry">💍 Ювелирный магазин</div>
+          <div class="vac-title">Продавец-консультант ювелирного магазина</div>
+          <div class="vac-meta">
+            <span class="vac-tag">📍 г. Тосно, пр. Ленина, 24</span>
+            <span class="vac-tag">💼 Полная занятость</span>
+            <span class="vac-tag">🕐 5/2, пн – сб</span>
+          </div>
+        </div>
+        <div class="vac-action"><a href="https://tosno.hh.ru/employer/3357344" target="_blank" rel="noopener">Откликнуться ↗</a></div>
+      </div>
+
       <div class="vac-card reveal" data-dept="admin">
         <div>
           <div class="vac-dept dept-admin">🏢 Администрация</div>
@@ -349,6 +366,19 @@
             <span class="vac-tag">📍 г. Тосно, ул. Советская, 7</span>
             <span class="vac-tag">💼 Полная занятость</span>
             <span class="vac-tag">⭐ Опыт от 1 года</span>
+          </div>
+        </div>
+        <div class="vac-action"><a href="https://tosno.hh.ru/employer/3357344" target="_blank" rel="noopener">Откликнуться ↗</a></div>
+      </div>
+
+      <div class="vac-card reveal" data-dept="jewel">
+        <div>
+          <div class="vac-dept dept-jewel">💎 Ювелирный магазин</div>
+          <div class="vac-title">Продавец-консультант ювелирного магазина</div>
+          <div class="vac-meta">
+            <span class="vac-tag">📍 г. Тосно, ул. Советская, 7</span>
+            <span class="vac-tag">💼 Полная занятость</span>
+            <span class="vac-tag">🕐 5/2, без ночных</span>
           </div>
         </div>
         <div class="vac-action"><a href="https://tosno.hh.ru/employer/3357344" target="_blank" rel="noopener">Откликнуться ↗</a></div>

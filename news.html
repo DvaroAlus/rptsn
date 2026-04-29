@@ -17,7 +17,9 @@
     .news-lead {
       padding:40px; background:var(--forest);
       margin-bottom:48px; position:relative; overflow:hidden;
+      transition: opacity .35s, transform .35s;
     }
+    .news-lead.hidden { display:none; }
     .news-lead::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--gold); }
     .news-lead::after  { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 50%, rgba(184,136,42,.1) 0%, transparent 60%); pointer-events:none; }
     .news-lead-inner { position:relative; z-index:1; }
@@ -30,26 +32,43 @@
     .ni {
       display:grid; grid-template-columns:80px 1fr; gap:28px;
       padding:28px 0; border-bottom:1px solid var(--rule);
-      transition:background .2s;
+      transition: background .2s, opacity .3s, transform .3s;
     }
     .ni:hover { background:var(--ivory); margin:0 -16px; padding-left:16px; padding-right:16px; }
-    .ni-date {
-      font-family:'DM Serif Display',serif;
-      font-size:1.2rem; color:var(--gold); line-height:1.2;
-      padding-top:3px;
-    }
+    .ni.hidden { display:none; }
+
+    .ni-date { font-family:'DM Serif Display',serif; font-size:1.2rem; color:var(--gold); line-height:1.2; padding-top:3px; }
     .ni-date small { display:block; font-family:'Outfit',sans-serif; font-size:.62rem; color:var(--muted); font-weight:300; letter-spacing:.04em; }
     .ni-cat  { font-size:.65rem; text-transform:uppercase; letter-spacing:.1em; color:var(--forest-soft); font-weight:500; margin-bottom:5px; }
     .ni-title{ font-family:'DM Serif Display',serif; font-size:1.05rem; font-weight:400; color:var(--ink); margin-bottom:5px; line-height:1.3; }
     .ni-desc { font-size:.85rem; color:var(--muted); font-weight:300; line-height:1.7; }
 
+    /* Пустое состояние */
+    .news-empty {
+      display:none; padding:48px 0; text-align:center;
+      border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
+    }
+    .news-empty .empty-icon { font-size:2.5rem; margin-bottom:12px; display:block; }
+    .news-empty p { font-size:.9rem; color:var(--muted); font-weight:300; }
+
     /* Sidebar */
     .news-sidebar {}
     .sb-section { margin-bottom:32px; }
     .sb-section h4 { font-size:.65rem; text-transform:uppercase; letter-spacing:.14em; color:var(--muted); padding-bottom:12px; border-bottom:1px solid var(--rule); margin-bottom:14px; }
-    .sb-link { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--rule); font-size:.85rem; color:var(--ink); font-weight:300; cursor:pointer; transition:color .2s, padding-left .2s; text-decoration:none; }
-    .sb-link:hover,.sb-link.active { color:var(--gold); padding-left:4px; }
-    .sb-cnt { font-size:.72rem; background:var(--sage); color:var(--forest-soft); padding:2px 8px; }
+    .sb-link {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:10px 0; border-bottom:1px solid var(--rule);
+      font-size:.85rem; color:var(--ink); font-weight:300;
+      cursor:pointer; transition:color .2s, padding-left .2s;
+      text-decoration:none; user-select:none;
+    }
+    .sb-link:hover { color:var(--gold); padding-left:4px; }
+    .sb-link.active { color:var(--gold); padding-left:4px; font-weight:500; }
+    .sb-cnt {
+      font-size:.72rem; background:var(--sage); color:var(--forest-soft);
+      padding:2px 8px; transition: background .2s, color .2s;
+    }
+    .sb-link.active .sb-cnt { background:var(--gold-pale); color:var(--gold); }
   </style>
 </head>
 <body data-page="news">
@@ -65,7 +84,8 @@
   <div class="news-body">
     <div class="news-layout">
       <div>
-        <div class="news-lead reveal">
+        <!-- Главная новость — рубрика: trade -->
+        <div class="news-lead reveal" data-cat="trade">
           <div class="news-lead-inner">
             <div class="news-lead-meta">20 апреля 2025 · Торговая сеть</div>
             <h2>Открытие обновлённого магазина в посёлке Ульяновка после капитального ремонта</h2>
@@ -74,47 +94,101 @@
           </div>
         </div>
 
-        <div class="news-list">
-          <div class="ni reveal">
+        <div class="news-list" id="news-list">
+
+          <div class="ni reveal" data-cat="action">
             <div class="ni-date">15<small>апр 2025</small></div>
-            <div><div class="ni-cat">Специальное предложение</div><div class="ni-title">Весенняя распродажа в промтоварных магазинах — скидки до 30%</div><p class="ni-desc">В период с 15 по 30 апреля во всех промтоварных объектах сети действуют скидки на текстиль, посуду и садово-огородный инвентарь.</p></div>
+            <div>
+              <div class="ni-cat">Специальное предложение</div>
+              <div class="ni-title">Весенняя распродажа в промтоварных магазинах — скидки до 30%</div>
+              <p class="ni-desc">В период с 15 по 30 апреля во всех промтоварных объектах сети действуют скидки на текстиль, посуду и садово-огородный инвентарь.</p>
+            </div>
           </div>
-          <div class="ni reveal">
+
+          <div class="ni reveal" data-cat="pharm">
             <div class="ni-date">10<small>апр 2025</small></div>
-            <div><div class="ni-cat">Аптечная сеть</div><div class="ni-title">Аптеки в Тосно и Любани переходят на расширенный режим работы</div><p class="ni-desc">С 10 апреля 2025 года аптечные пункты переведены на режим 08:00 – 21:00 без выходных дней.</p></div>
+            <div>
+              <div class="ni-cat">Аптечная сеть</div>
+              <div class="ni-title">Аптеки в Тосно и Любани переходят на расширенный режим работы</div>
+              <p class="ni-desc">С 10 апреля 2025 года аптечные пункты переведены на режим 08:00 – 21:00 без выходных дней.</p>
+            </div>
           </div>
-          <div class="ni reveal">
+
+          <div class="ni reveal" data-cat="trade">
             <div class="ni-date">5<small>апр 2025</small></div>
-            <div><div class="ni-cat">Закупочная деятельность</div><div class="ni-title">Договоры поставки с тремя фермерскими хозяйствами Ленинградской области</div><p class="ni-desc">Подписаны договоры на поставку молочной продукции и мяса с хозяйствами Тосненского и Гатчинского районов.</p></div>
+            <div>
+              <div class="ni-cat">Закупочная деятельность</div>
+              <div class="ni-title">Договоры поставки с тремя фермерскими хозяйствами Ленинградской области</div>
+              <p class="ni-desc">Подписаны договоры на поставку молочной продукции и мяса с хозяйствами Тосненского и Гатчинского районов.</p>
+            </div>
           </div>
-          <div class="ni reveal">
+
+          <div class="ni reveal" data-cat="careers">
             <div class="ni-date">1<small>апр 2025</small></div>
-            <div><div class="ni-cat">Карьера</div><div class="ni-title">Тосненское Райпо открывает новые вакансии во всех направлениях деятельности</div><p class="ni-desc">Приглашаем продавцов, фармацевтов, поваров, ветеринарных врачей и административных специалистов. Официальное трудоустройство, стабильная зарплата.</p></div>
+            <div>
+              <div class="ni-cat">Карьера</div>
+              <div class="ni-title">Тосненское Райпо открывает новые вакансии во всех направлениях деятельности</div>
+              <p class="ni-desc">Приглашаем продавцов, фармацевтов, поваров, ветеринарных врачей и административных специалистов. Официальное трудоустройство, стабильная зарплата.</p>
+            </div>
           </div>
-          <div class="ni reveal">
+
+          <div class="ni reveal" data-cat="pharm">
             <div class="ni-date">25<small>мар 2025</small></div>
-            <div><div class="ni-cat">Аптечная сеть · Льготы</div><div class="ni-title">Аптеки Райпо включены в программу льготного лекарственного обеспечения области</div><p class="ni-desc">На основании соглашения с Комитетом по здравоохранению наши аптеки получили право отпуска препаратов по льготным рецептам.</p></div>
+            <div>
+              <div class="ni-cat">Аптечная сеть · Льготы</div>
+              <div class="ni-title">Аптеки Райпо включены в программу льготного лекарственного обеспечения области</div>
+              <p class="ni-desc">На основании соглашения с Комитетом по здравоохранению наши аптеки получили право отпуска препаратов по льготным рецептам.</p>
+            </div>
           </div>
-          <div class="ni reveal">
+
+          <div class="ni reveal" data-cat="action">
             <div class="ni-date">10<small>мар 2025</small></div>
-            <div><div class="ni-cat">Достижение</div><div class="ni-title">Тосненское Райпо — лучшее потребительское общество Ленобласти 2024</div><p class="ni-desc">По итогам конкурса Ленинградского облпотребсоюза организация заняла первое место по показателям товарооборота и социальной эффективности.</p></div>
+            <div>
+              <div class="ni-cat">Достижение</div>
+              <div class="ni-title">Тосненское Райпо — лучшее потребительское общество Ленобласти 2024</div>
+              <p class="ni-desc">По итогам конкурса Ленинградского облпотребсоюза организация заняла первое место по показателям товарооборота и социальной эффективности.</p>
+            </div>
           </div>
-          <div class="ni reveal">
+
+          <div class="ni reveal" data-cat="harvest">
             <div class="ni-date">20<small>фев 2025</small></div>
-            <div><div class="ni-cat">Заготовительная деятельность</div><div class="ni-title">Старт заготовительной кампании весна–лето 2025</div><p class="ni-desc">Открыт приём сельскохозяйственной продукции: картофель, овощи, ягоды, грибы, лекарственные травы. Адреса пунктов — в ближайшем магазине.</p></div>
+            <div>
+              <div class="ni-cat">Заготовительная деятельность</div>
+              <div class="ni-title">Старт заготовительной кампании весна–лето 2025</div>
+              <p class="ni-desc">Открыт приём сельскохозяйственной продукции: картофель, овощи, ягоды, грибы, лекарственные травы. Адреса пунктов — в ближайшем магазине.</p>
+            </div>
           </div>
+
+        </div>
+
+        <!-- Пустое состояние -->
+        <div class="news-empty" id="news-empty">
+          <span class="empty-icon">📭</span>
+          <p>В этой рубрике пока нет материалов</p>
         </div>
       </div>
 
       <div class="news-sidebar">
         <div class="sb-section reveal">
           <h4>Рубрики</h4>
-          <div class="sb-link active">Все материалы <span class="sb-cnt">8</span></div>
-          <div class="sb-link">Торговая сеть <span class="sb-cnt">2</span></div>
-          <div class="sb-link">Аптеки <span class="sb-cnt">2</span></div>
-          <div class="sb-link">Акции <span class="sb-cnt">2</span></div>
-          <div class="sb-link">Пайщикам <span class="sb-cnt">1</span></div>
-          <div class="sb-link">Заготовка <span class="sb-cnt">1</span></div>
+          <div class="sb-link active" onclick="filterNews('all', this)">
+            Все материалы <span class="sb-cnt">7</span>
+          </div>
+          <div class="sb-link" onclick="filterNews('trade', this)">
+            Торговая сеть <span class="sb-cnt">2</span>
+          </div>
+          <div class="sb-link" onclick="filterNews('pharm', this)">
+            Аптеки <span class="sb-cnt">2</span>
+          </div>
+          <div class="sb-link" onclick="filterNews('action', this)">
+            Акции и достижения <span class="sb-cnt">2</span>
+          </div>
+          <div class="sb-link" onclick="filterNews('careers', this)">
+            Карьера <span class="sb-cnt">1</span>
+          </div>
+          <div class="sb-link" onclick="filterNews('harvest', this)">
+            Заготовка <span class="sb-cnt">1</span>
+          </div>
         </div>
         <div class="sb-section reveal">
           <h4>Контакты пресс-службы</h4>
@@ -131,6 +205,41 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function filterNews(cat, el) {
+      // Снять активный класс со всех рубрик
+      document.querySelectorAll('.sb-section .sb-link[onclick]').forEach(l => l.classList.remove('active'));
+      el.classList.add('active');
+
+      const lead  = document.querySelector('.news-lead');
+      const items = document.querySelectorAll('#news-list .ni');
+      const empty = document.getElementById('news-empty');
+
+      // Фильтрация главной новости
+      if (cat === 'all') {
+        lead.classList.remove('hidden');
+      } else {
+        lead.dataset.cat === cat
+          ? lead.classList.remove('hidden')
+          : lead.classList.add('hidden');
+      }
+
+      // Фильтрация новостей
+      let visible = 0;
+      items.forEach(item => {
+        const show = cat === 'all' || item.dataset.cat === cat;
+        item.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+
+      // Учесть главную новость в счётчике
+      if (cat !== 'all' && !lead.classList.contains('hidden')) visible++;
+
+      // Пустое состояние
+      empty.style.display = (visible === 0) ? 'block' : 'none';
+    }
+  </script>
   <script src="nav.js"></script>
 </body>
 </html>

@@ -65,7 +65,7 @@
 
     .hero-right {
       display: grid; grid-template-columns: 1fr 1fr;
-     border-left: 1px solid rgba(255,255,255,.06);
+      border-left: 1px solid rgba(255,255,255,.06);
       position: relative; z-index: 1;
     }
     .hero-stat {
@@ -99,7 +99,7 @@
       display: flex; align-items: center; gap: 10px;
       padding: 18px 24px;
       font-size: .82rem; font-weight: 500; color: var(--forest);
-      /*border-right: 1px solid rgba(28,53,48,.15);*/
+     /*border-right: 1px solid rgba(28,53,48,.15);*/
       white-space: nowrap;
     }
     .is-item:last-child { border-right: none; }
@@ -112,6 +112,7 @@
     .dir-panel:nth-child(3) { border-right: none; }
     .dir-panel:nth-child(n+4) { border-top: 1px solid var(--rule); }
     .dir-panel:nth-child(6) { border-right: none; }
+    .dir-panel:nth-child(7) { border-top: 1px solid var(--rule); border-right: none; }
     .dir-panel {
       padding: 48px 40px; border-right: 1px solid var(--rule);
       transition: background .3s; position: relative;
@@ -209,7 +210,7 @@
     <div class="hero-right">
       <div class="hero-stat"><div class="hs-val">1946</div><div class="hs-lbl">год основания</div></div>
       <div class="hero-stat"><div class="hs-val">40+</div><div class="hs-lbl">торговых объектов</div></div>
-      <div class="hero-stat"><div class="hs-val">6</div><div class="hs-lbl">направлений</div></div>
+      <div class="hero-stat"><div class="hs-val">7</div><div class="hs-lbl">направлений</div></div>
       <div class="hero-stat"><div class="hs-val">300+</div><div class="hs-lbl">сотрудников</div></div>
     </div>
   </section>
@@ -220,13 +221,14 @@
     <div class="is-item">💊 Аптечные пункты</div>
     <div class="is-item">🍽️ Общественное питание</div>
     <div class="is-item">🐾 Ветклиника и зоомаркет</div>
+    <div class="is-item">💎 Ювелирный магазин</div>
   </div>
 
   <!-- НАПРАВЛЕНИЯ -->
   <div class="section">
     <div class="reveal"><div class="overline">Направления деятельности</div></div>
     <div class="reveal" style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:20px">
-      <div class="display">Шесть направлений —<br><em>одна организация</em></div>
+      <div class="display">Семь направлений —<br><em>одна организация</em></div>
       <a href="stores.html" class="btn btn-ghost">Все объекты →</a>
     </div>
     <div class="dir-split">
@@ -264,6 +266,12 @@
         <span class="dir-icon">🐾</span>
         <h3>Зоомаркет</h3>
         <p>Корма, аксессуары, товары по уходу за домашними животными. Широкий ассортимент для кошек, собак, птиц и грызунов по доступным ценам.</p>
+        <a href="stores.html" class="dir-link">В магазин →</a>
+      </div>
+      <div class="dir-panel reveal reveal-d1">
+        <span class="dir-icon">💎</span>
+        <h3>Ювелирный магазин</h3>
+        <p>Украшения из золота и серебра, обручальные кольца, подарочные изделия. Широкий ассортимент от ведущих российских производителей.</p>
         <a href="stores.html" class="dir-link">В магазин →</a>
       </div>
     </div>
