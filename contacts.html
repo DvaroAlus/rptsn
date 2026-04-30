@@ -156,13 +156,10 @@
       </div>
 
       <!-- =========================================================
-             ФОРМА ОБРАТНОЙ СВЯЗИ — Formspree
+             ФОРМА ОБРАТНОЙ СВЯЗИ — PHP
              ---------------------------------------------------------
-             Инструкция по подключению (бесплатно, до 50 писем/мес):
-             1. Зарегистрируйтесь на https://formspree.io
-             2. Создайте новую форму ("New Form")
-             3. Скопируйте ID формы (например: xblgrqzk)
-             4. Замените YOUR_FORM_ID в contacts.html на ваш ID
+             Рядом с этим файлом должен лежать send.php
+             В send.php замените $to на вашу почту для приёма писем
              ========================================================= -->
         <div class="form-block reveal-right" id="form-block">
         <h3>Написать нам</h3>
@@ -218,9 +215,6 @@
   </div>
 
   <script>
-    // ── Замените YOUR_FORM_ID на ваш ID из формы на formspree.io ──
-    const FORMSPREE_ID = 'YOUR_FORM_ID';
-
     function validate() {
       let ok = true;
       const rules = [
@@ -247,34 +241,25 @@
     async function send() {
       if (!validate()) return;
 
-      const btn = document.getElementById('f-submit-btn');
+      const btn    = document.getElementById('f-submit-btn');
       const errBox = document.getElementById('f-error');
       errBox.style.display = 'none';
 
-      // Состояние загрузки
       btn.disabled = true;
       btn.innerHTML = '<span class="spinner"></span>Отправляем...';
 
-      const data = {
+      const data = new URLSearchParams({
         name:    document.getElementById('f-name').value.trim()
                + ' ' + document.getElementById('f-lastname').value.trim(),
         contact: document.getElementById('f-contact').value.trim(),
         topic:   document.getElementById('f-topic').value,
         message: document.getElementById('f-msg').value.trim(),
-      };
+      });
 
       try {
-        if (FORMSPREE_ID === 'YOUR_FORM_ID') {
-          // Режим демонстрации — форма не настроена
-          await new Promise(r => setTimeout(r, 900));
-          showSuccess();
-          return;
-        }
-
-        const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        const res = await fetch('send.php', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(data),
+          body: data,
         });
 
         if (res.ok) {
