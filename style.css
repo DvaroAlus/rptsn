@@ -172,7 +172,7 @@ nav.scrolled {
 .mobile-nav a.mobile-cta {
   margin-top: 20px;
   background: var(--gold); color: var(--white) !important;
-  text-align: center; padding: 14px 0 !important;
+  text-align: center; padding: 14px 10px !important;
   border-bottom: none; font-weight: 500;
   transition: background .2s !important;
 }
