@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Контакты — Тосненское Райпо</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -196,6 +198,10 @@
           <textarea id="f-msg" name="message" placeholder="Изложите суть обращения..."></textarea>
           <span class="field-error">Напишите сообщение</span>
         </div>
+        <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;">
+          <label for="f-website">Не заполняйте это поле</label>
+          <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
         <button class="f-submit" id="f-submit-btn" type="button" onclick="send()">Отправить обращение</button>
         <div class="f-error" id="f-error">
           <p>Не удалось отправить сообщение. Попробуйте ещё раз или напишите на <strong>info@tosno-raipo.ru</strong></p>
@@ -254,6 +260,7 @@
         contact: document.getElementById('f-contact').value.trim(),
         topic:   document.getElementById('f-topic').value,
         message: document.getElementById('f-msg').value.trim(),
+        website: document.getElementById('f-website').value,
       });
 
       try {
